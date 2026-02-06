@@ -5,7 +5,6 @@ A modern, performant SaaS landing page kit built with Astro, React, Tailwind CSS
 ## Features
 
 - ⚡ **Lightning Fast** - Built with Astro for optimal performance
-- 🎨 **Beautiful UI** - Styled with Tailwind CSS and shadcn/ui components
 - 🔐 **Authentication Ready** - Integrated auth with login/logout functionality
 - 📱 **Responsive** - Mobile-first design that works on all devices
 - 🎯 **Type Safe** - Full TypeScript support
