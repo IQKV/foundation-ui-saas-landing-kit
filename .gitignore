@@ -186,3 +186,13 @@ atlassian-ide-plugin.xml
 
 CLAUDE.local.md
 .release-it.json
+
+######################
+# Astro
+######################
+dist/
+.output/
+.astro/
+.cache/
+.env.local
+.env.production

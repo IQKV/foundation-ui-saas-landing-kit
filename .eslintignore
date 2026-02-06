@@ -1,0 +1,9 @@
+dist
+.astro
+.output
+node_modules
+*.config.js
+*.config.mjs
+*.config.ts
+.vscode
+.idea

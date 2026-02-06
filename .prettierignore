@@ -1,22 +1,18 @@
-src
-
 node_modules
 package-lock.json
 pnpm-lock.yaml
+
+.astro
 .git
 build/
 dist/
-
-.eslintrc.cjs
-.prettierrc.cjs
-tsconfig.json
+.output/
 
 # TypeScript cache
 *.tsbuildinfo
 
 # Optional npm cache directory
 .npm
-
 .pnpm-store
 
 # Optional eslint cache

@@ -1,14 +1,149 @@
-# Blank Project Name 🚀
+# SaaS Landing Kit 🚀
 
-<details>
-  <summary><strong>✅ Pre-publish checklist (remove in final README)</strong></summary>
+A modern, performant SaaS landing page kit built with Astro, React, Tailwind CSS, and shadcn/ui components. Features integrated authentication with a clean top navigation bar that adapts based on user login status.
 
-- [ ] Title updated and logo added
-- [ ] Badges added (CI, tests, coverage, license)
-- [ ] About/Usage/Installation/Commands completed
-- [ ] Development prerequisites and environment documented
-- [ ] Architecture notes reflect your stack and modules
-- [ ] Links verified (Getting Started, docs, external resources)
-- [ ] This guidance removed before publishing
+## Features
 
-</details>
+- ⚡ **Lightning Fast** - Built with Astro for optimal performance
+- 🎨 **Beautiful UI** - Styled with Tailwind CSS and shadcn/ui components
+- 🔐 **Authentication Ready** - Integrated auth with login/logout functionality
+- 📱 **Responsive** - Mobile-first design that works on all devices
+- 🎯 **Type Safe** - Full TypeScript support
+- 🔄 **React Islands** - Interactive components with partial hydration
+
+## Tech Stack
+
+- [Astro](https://astro.build/) - Static site generator
+- [React](https://react.dev/) - UI components
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [shadcn/ui](https://ui.shadcn.com/) - Component library
+- [Zustand](https://zustand-demo.pmnd.rs/) - State management
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 22.13.0
+- pnpm >= 10.19.0
+
+### Installation
+
+```bash
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+
+# Build for production
+pnpm build
+
+# Preview production build
+pnpm preview
+```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── ui/              # shadcn/ui components
+│   ├── TopNav.tsx       # Main navigation with auth
+│   └── UserMenu.tsx     # User dropdown menu
+├── layouts/
+│   └── BaseLayout.astro # Base page layout
+├── lib/
+│   ├── auth-store.ts    # Authentication state
+│   └── utils.ts         # Utility functions
+├── pages/
+│   ├── index.astro      # Home page
+│   ├── features.astro   # Features page
+│   ├── pricing.astro    # Pricing page
+│   └── about.astro      # About page
+└── styles/
+    └── globals.css      # Global styles
+```
+
+## Authentication
+
+The kit includes a simple authentication integration:
+
+- **Login/Sign Up Links** - Shown when user is not authenticated
+- **User Menu** - Shown when user is authenticated with avatar and logout option
+- **State Management** - Uses Zustand with localStorage persistence
+
+To integrate with your auth service, update the auth URLs in `src/components/TopNav.tsx`.
+
+## Customization
+
+### Adding New Pages
+
+Create a new `.astro` file in `src/pages/`:
+
+```astro
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="New Page">
+  <div class="container mx-auto px-4 py-16">
+    <h1>New Page</h1>
+  </div>
+</BaseLayout>
+```
+
+### Adding shadcn/ui Components
+
+The kit includes Button, Avatar, and DropdownMenu components. To add more:
+
+1. Copy component code from [shadcn/ui](https://ui.shadcn.com/)
+2. Place in `src/components/ui/`
+3. Import and use in your components
+
+### Styling
+
+- Global styles: `src/styles/globals.css`
+- Tailwind config: `tailwind.config.mjs`
+- Component styles: Use Tailwind utility classes
+
+## Scripts
+
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production (includes type checking)
+- `pnpm preview` - Preview production build
+- `pnpm lint` - Run ESLint
+- `pnpm lint:eslint` - Lint JavaScript/TypeScript/Astro files
+- `pnpm lint:eslint:fix` - Fix ESLint issues automatically
+- `pnpm prettier:check` - Check code formatting
+- `pnpm prettier:write` - Format code with Prettier
+
+## Code Quality
+
+The project includes comprehensive linting and formatting:
+
+### ESLint
+
+- Configured for TypeScript, React, and Astro
+- React Hooks rules enabled
+- Automatic fixing on save (in VS Code)
+
+### Prettier
+
+- Consistent code formatting
+- Astro file support
+- Runs on pre-commit via Husky
+
+### Pre-commit Hooks
+
+- Automatic linting and formatting via lint-staged
+- Commit message validation via commitlint
+- Branch name validation
+
+## License
+
+Apache-2.0
+
+## Contributing
+
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for contribution guidelines.

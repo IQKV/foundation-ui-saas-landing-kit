@@ -1,5 +1,4 @@
-#!/usr/bin/env sh
-git add .
+#!/bin/bash
 npx lint-staged
 
 current_branch=$(git rev-parse --abbrev-ref HEAD)
