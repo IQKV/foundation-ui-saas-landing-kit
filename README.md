@@ -14,8 +14,6 @@ A modern, performant SaaS landing page kit built with Astro, React, Tailwind CSS
 
 - [Astro](https://astro.build/) - Static site generator
 - [React](https://react.dev/) - UI components
-- [Tailwind CSS](https://tailwindcss.com/) - Styling
-- [shadcn/ui](https://ui.shadcn.com/) - Component library
 - [Zustand](https://zustand-demo.pmnd.rs/) - State management
 - [TypeScript](https://www.typescriptlang.org/) - Type safety
 
@@ -91,14 +89,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   </div>
 </BaseLayout>
 ```
-
-### Adding shadcn/ui Components
-
-The kit includes Button, Avatar, and DropdownMenu components. To add more:
-
-1. Copy component code from [shadcn/ui](https://ui.shadcn.com/)
-2. Place in `src/components/ui/`
-3. Import and use in your components
 
 ### Styling
 
