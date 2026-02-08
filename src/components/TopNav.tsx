@@ -54,6 +54,9 @@ export function TopNav() {
           <li>
             <a href="/about">About</a>
           </li>
+          <li>
+            <a href="https://iqkv.com/">Explore Platform</a>
+          </li>
         </ul>
       </div>
       <div className="navbar-end gap-2">
