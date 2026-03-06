@@ -58,7 +58,7 @@
     "@types/react-dom": "^19.2.3",
     "cz-conventional-changelog": "^3.3.0",
     "daisyui": "^5.5.19",
-    "eslint": "^9.39.2",
+    "eslint": "^9.39.3",
     "eslint-plugin-astro": "^1.6.0",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
@@ -66,15 +66,19 @@
     "globals": "^17.4.0",
     "husky": "9.1.7",
     "lint-staged": "^16.3.2",
+    "oxfmt": "^0.36.0",
+    "oxlint": "^1.51.0",
+    "oxlint-tsgolint": "^0.16.0",
     "prettier": "3.8.1",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-packagejson": "3.0.2",
     "release-it": "^19.2.4",
     "release-it-pnpm": "^4.6.6",
     "sort-package-json": "^3.6.1",
+    "tsdown": "^0.21.0",
     "typescript-eslint": "^8.56.1"
   },
-  "packageManager": "pnpm@10.19.0",
+  "packageManager": "pnpm@10.30.3",
   "engines": {
     "node": ">=22.13.0"
   }
