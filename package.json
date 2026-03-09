@@ -13,8 +13,8 @@
     "lint:eslint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,.astro --fix",
     "node_modules:cleanup": "rm -rf node_modules",
     "prepare": "husky",
-    "prettier:check": "prettier . --check --ignore-unknown",
-    "prettier:write": "prettier . --write",
+    "formatter:check": "prettier . --check --ignore-unknown",
+    "formatter:write": "prettier . --write",
     "preview": "astro preview",
     "release": "release-it --ci"
   },

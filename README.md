@@ -104,8 +104,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 - `pnpm lint` - Run ESLint
 - `pnpm lint:eslint` - Lint JavaScript/TypeScript/Astro files
 - `pnpm lint:eslint:fix` - Fix ESLint issues automatically
-- `pnpm prettier:check` - Check code formatting
-- `pnpm prettier:write` - Format code with Prettier
+- `pnpm formatter:check` - Check code formatting
+- `pnpm formatter:write` - Format code with Prettier
 
 ## Code Quality
 
