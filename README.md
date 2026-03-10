@@ -22,7 +22,7 @@ A modern, performant SaaS landing page kit built with Astro, React, Tailwind CSS
 ### Prerequisites
 
 - Node.js >= 22.13.0
-- pnpm >= 10.30.3
+- pnpm >= 10.31.0
 
 ### Installation
 
