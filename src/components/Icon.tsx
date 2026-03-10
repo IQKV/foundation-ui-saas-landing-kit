@@ -7,18 +7,6 @@ interface IconProps {
   className?: string;
 }
 
-export function Icon({
-  icon,
-  size = 24,
-  color = "currentColor",
-  className,
-}: IconProps) {
-  return (
-    <HugeiconsIcon
-      icon={icon}
-      size={size}
-      color={color}
-      className={className}
-    />
-  );
+export function Icon({ icon, size = 24, color = "currentColor", className }: IconProps) {
+  return <HugeiconsIcon icon={icon} size={size} color={color} className={className} />;
 }

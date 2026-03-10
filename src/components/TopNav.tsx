@@ -64,16 +64,10 @@ export function TopNav() {
           <UserMenu />
         ) : (
           <>
-            <a
-              href="https://auth.iqscaffold.com/login"
-              className="btn btn-ghost"
-            >
+            <a href="https://auth.iqscaffold.com/login" className="btn btn-ghost">
               Login
             </a>
-            <a
-              href="https://auth.iqscaffold.com/register"
-              className="btn btn-primary"
-            >
+            <a href="https://auth.iqscaffold.com/register" className="btn btn-primary">
               Sign Up
             </a>
           </>
