@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { Icon } from "@/components/Icon";
+import { AnimatedSection } from "@/components/AnimatedSection";
+import { FeatureCard } from "@/components/FeatureCard";
 import { IconBox } from "@/components/IconBox";
 import {
   UserIcon,
@@ -8,7 +9,6 @@ import {
   CreditCardIcon,
   UserMultipleIcon,
   AnalyticsUpIcon,
-  Tick02Icon,
   Shield01Icon,
   RocketIcon,
   ViewIcon,
@@ -18,412 +18,160 @@ import {
 
 <BaseLayout title="Platform Services - IQ Scaffold">
   <div class="container mx-auto px-4 py-16">
-    <div class="text-center mb-16">
-      <h1 class="text-4xl font-bold mb-4">Platform Services</h1>
-      <p class="text-lg max-w-2xl mx-auto">
-        Six production-ready microservices covering essential business
-        operations
-      </p>
-    </div>
+    <AnimatedSection client:load>
+      <div class="text-center mb-16">
+        <h1 class="text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+          Platform Services
+        </h1>
+        <p class="text-xl max-w-2xl mx-auto text-base-content/70">
+          Six production-ready microservices covering essential business operations
+        </p>
+      </div>
+    </AnimatedSection>
 
     <div class="grid md:grid-cols-2 gap-8 mb-16">
-      <div class="card bg-base-100 shadow-xl">
-        <div class="card-body">
-          <IconBox icon={UserIcon} client:load />
-          <h2 class="card-title">User Service</h2>
-          <p>
-            Centralized identity and access management for your entire platform.
-          </p>
-          <ul class="space-y-2">
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Secure authentication with email verification</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Role-based access control for teams and organizations</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Multi-tenant user isolation</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Password reset and account security</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Complete audit trails for compliance</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <FeatureCard
+        icon={UserIcon}
+        title="User Service"
+        description="Centralized identity and access management for your entire platform."
+        features={[
+          "Secure authentication with email verification",
+          "Role-based access control for teams and organizations",
+          "Multi-tenant user isolation",
+          "Password reset and account security",
+          "Complete audit trails for compliance",
+        ]}
+        delay={0.1}
+        client:load
+      />
 
-      <div class="card bg-base-100 shadow-xl">
-        <div class="card-body">
-          <IconBox icon={Globe02Icon} client:load />
-          <h2 class="card-title">Gateway Service</h2>
-          <p>
-            Intelligent API gateway protecting and routing all platform traffic.
-          </p>
-          <ul class="space-y-2">
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Automatic rate limiting to prevent abuse</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Circuit breakers for service resilience</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Request routing and load balancing</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Multi-tenant request isolation</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Real-time monitoring and alerts</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <FeatureCard
+        icon={Globe02Icon}
+        title="Gateway Service"
+        description="Intelligent API gateway protecting and routing all platform traffic."
+        features={[
+          "Automatic rate limiting to prevent abuse",
+          "Circuit breakers for service resilience",
+          "Request routing and load balancing",
+          "Multi-tenant request isolation",
+          "Real-time monitoring and alerts",
+        ]}
+        delay={0.2}
+        client:load
+      />
 
-      <div class="card bg-base-100 shadow-xl">
-        <div class="card-body">
-          <IconBox icon={CreditCardIcon} client:load />
-          <h2 class="card-title">Billing Service</h2>
-          <p>
-            Complete payment operations from one-time charges to complex revenue
-            sharing.
-          </p>
-          <ul class="space-y-2">
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Accept payments with multiple payment gateways</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Manage subscriptions with automated billing</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Onboard merchants with Stripe Connect</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Handle refunds and disputes automatically</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Revenue sharing and platform fees</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Invoice generation and tracking</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <FeatureCard
+        icon={CreditCardIcon}
+        title="Billing Service"
+        description="Complete payment operations from one-time charges to complex revenue sharing."
+        features={[
+          "Accept payments with multiple payment gateways",
+          "Manage subscriptions with automated billing",
+          "Onboard merchants with Stripe Connect",
+          "Handle refunds and disputes automatically",
+          "Revenue sharing and platform fees",
+          "Invoice generation and tracking",
+        ]}
+        delay={0.3}
+        client:load
+      />
 
-      <div class="card bg-base-100 shadow-xl">
-        <div class="card-body">
-          <IconBox icon={AnalyticsUpIcon} client:load />
-          <h2 class="card-title">Lead Service</h2>
-          <p>Capture, qualify, and convert leads into customers efficiently.</p>
-          <ul class="space-y-2">
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Multi-source lead capture and tracking</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Automatic lead scoring (0-100)</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Lead assignment to sales teams</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Qualification workflows</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Seamless conversion to contacts</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <FeatureCard
+        icon={AnalyticsUpIcon}
+        title="Lead Service"
+        description="Capture, qualify, and convert leads into customers efficiently."
+        features={[
+          "Multi-source lead capture and tracking",
+          "Automatic lead scoring (0-100)",
+          "Lead assignment to sales teams",
+          "Qualification workflows",
+          "Seamless conversion to contacts",
+        ]}
+        delay={0.4}
+        client:load
+      />
 
-      <div class="card bg-base-100 shadow-xl">
-        <div class="card-body">
-          <IconBox icon={UserMultipleIcon} client:load />
-          <h2 class="card-title">Contact Service</h2>
-          <p>Comprehensive contact management with bulk operations support.</p>
-          <ul class="space-y-2">
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Complete contact lifecycle management</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Bulk operations for efficiency</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Company associations and relationships</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Lead conversion tracking</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Activity history and notes</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <FeatureCard
+        icon={UserMultipleIcon}
+        title="Contact Service"
+        description="Comprehensive contact management with bulk operations support."
+        features={[
+          "Complete contact lifecycle management",
+          "Bulk operations for efficiency",
+          "Company associations and relationships",
+          "Lead conversion tracking",
+          "Activity history and notes",
+        ]}
+        delay={0.5}
+        client:load
+      />
 
-      <div class="card bg-base-100 shadow-xl">
-        <div class="card-body">
-          <IconBox icon={AnalyticsUpIcon} client:load />
-          <h2 class="card-title">Pipeline Service</h2>
-          <p>
-            Sales pipeline management with analytics and conversion tracking.
-          </p>
-          <ul class="space-y-2">
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Customizable pipeline stages</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Follow-up scheduling and reminders</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Real-time conversion analytics</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Sales velocity tracking</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Team performance dashboards</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <FeatureCard
+        icon={AnalyticsUpIcon}
+        title="Pipeline Service"
+        description="Sales pipeline management with analytics and conversion tracking."
+        features={[
+          "Customizable pipeline stages",
+          "Follow-up scheduling and reminders",
+          "Real-time conversion analytics",
+          "Sales velocity tracking",
+          "Team performance dashboards",
+        ]}
+        delay={0.6}
+        client:load
+      />
     </div>
 
-    <section class="card bg-base-200 shadow-xl">
-      <div class="card-body">
-        <h2 class="card-title text-2xl mb-6 justify-center">
-          Cross-Platform Capabilities
-        </h2>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="flex items-start gap-3">
-            <IconBox icon={Shield01Icon} size={20} client:load />
-            <div>
-              <h3 class="font-semibold mb-2">Security & Compliance</h3>
-              <p class="text-sm">
-                Multi-tenant data isolation, encrypted credentials, audit
-                logging, and role-based access control
-              </p>
+    <AnimatedSection client:load delay={0.3}>
+      <section class="card bg-gradient-to-br from-base-200 to-base-100 shadow-xl border border-base-300/50">
+        <div class="card-body">
+          <h2 class="card-title text-3xl mb-8 justify-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            Cross-Platform Capabilities
+          </h2>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-base-100 transition-colors">
+              <IconBox icon={Shield01Icon} size={20} client:load />
+              <div>
+                <h3 class="font-semibold mb-2 text-lg">Security & Compliance</h3>
+                <p class="text-sm text-base-content/70">
+                  Multi-tenant data isolation, encrypted credentials, audit
+                  logging, and role-based access control
+                </p>
+              </div>
             </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <IconBox icon={RocketIcon} size={20} client:load />
-            <div>
-              <h3 class="font-semibold mb-2">Scalability & Performance</h3>
-              <p class="text-sm">
-                Distributed caching, rate limiting, circuit breakers, and
-                independent service scaling
-              </p>
+            <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-base-100 transition-colors">
+              <IconBox icon={RocketIcon} size={20} client:load />
+              <div>
+                <h3 class="font-semibold mb-2 text-lg">Scalability & Performance</h3>
+                <p class="text-sm text-base-content/70">
+                  Distributed caching, rate limiting, circuit breakers, and
+                  independent service scaling
+                </p>
+              </div>
             </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <IconBox icon={ViewIcon} size={20} client:load />
-            <div>
-              <h3 class="font-semibold mb-2">Observability</h3>
-              <p class="text-sm">
-                Distributed tracing, metrics collection, structured logging, and
-                real-time monitoring
-              </p>
+            <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-base-100 transition-colors">
+              <IconBox icon={ViewIcon} size={20} client:load />
+              <div>
+                <h3 class="font-semibold mb-2 text-lg">Observability</h3>
+                <p class="text-sm text-base-content/70">
+                  Distributed tracing, metrics collection, structured logging, and
+                  real-time monitoring
+                </p>
+              </div>
             </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <IconBox icon={PuzzleIcon} size={20} client:load />
-            <div>
-              <h3 class="font-semibold mb-2">Integration Ready</h3>
-              <p class="text-sm">
-                Event-driven architecture, REST APIs, webhook support, and
-                standardized error handling
-              </p>
+            <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-base-100 transition-colors">
+              <IconBox icon={PuzzleIcon} size={20} client:load />
+              <div>
+                <h3 class="font-semibold mb-2 text-lg">Integration Ready</h3>
+                <p class="text-sm text-base-content/70">
+                  Event-driven architecture, REST APIs, webhook support, and
+                  standardized error handling
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </AnimatedSection>
   </div>
 </BaseLayout>

@@ -3,33 +3,53 @@ export default {
   darkMode: ["class"],
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        "fade-in": "fadeIn 0.5s ease-in-out",
+        "slide-up": "slideUp 0.5s ease-out",
+        float: "float 3s ease-in-out infinite",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        slideUp: {
+          "0%": { transform: "translateY(20px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
     themes: [
       {
         light: {
-          primary: "#6b7280", // Gray
-          "primary-content": "#ffffff", // White text on primary
-          secondary: "#a78bfa", // Purple
-          "secondary-content": "#ffffff", // White text on secondary
-          accent: "#34d399", // Green
-          "accent-content": "#ffffff", // White text on accent
-          neutral: "#3d4451", // Dark gray
-          "neutral-content": "#ffffff", // White text on neutral
-          "base-100": "#ffffff", // White background
-          "base-200": "#f3f4f6", // Light gray
-          "base-300": "#e5e7eb", // Medium gray
-          "base-content": "#1f2937", // Dark text
-          info: "#3abff8", // Blue
-          "info-content": "#ffffff", // White text on info
-          success: "#36d399", // Green
-          "success-content": "#ffffff", // White text on success
-          warning: "#fbbd23", // Yellow
-          "warning-content": "#1f2937", // Dark text on warning
-          error: "#f87272", // Red
-          "error-content": "#ffffff", // White text on error
+          primary: "#6366f1", // Modern indigo
+          "primary-content": "#ffffff",
+          secondary: "#8b5cf6", // Vibrant purple
+          "secondary-content": "#ffffff",
+          accent: "#10b981", // Fresh green
+          "accent-content": "#ffffff",
+          neutral: "#1f2937",
+          "neutral-content": "#ffffff",
+          "base-100": "#ffffff",
+          "base-200": "#f9fafb",
+          "base-300": "#f3f4f6",
+          "base-content": "#111827",
+          info: "#3b82f6",
+          "info-content": "#ffffff",
+          success: "#10b981",
+          "success-content": "#ffffff",
+          warning: "#f59e0b",
+          "warning-content": "#ffffff",
+          error: "#ef4444",
+          "error-content": "#ffffff",
         },
       },
     ],

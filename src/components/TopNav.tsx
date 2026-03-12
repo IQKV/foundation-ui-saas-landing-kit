@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useAuthStore } from "@/lib/auth-store";
 import { UserMenu } from "./UserMenu";
 
@@ -5,7 +6,12 @@ export function TopNav() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
 
   return (
-    <div className="navbar bg-base-100 border-b">
+    <motion.div
+      className="navbar bg-base-100/80 backdrop-blur-lg border-b border-base-300/50 sticky top-0 z-50"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -26,7 +32,7 @@ export function TopNav() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg"
           >
             <li>
               <a href="/features">Platform</a>
@@ -39,23 +45,40 @@ export function TopNav() {
             </li>
           </ul>
         </div>
-        <a href="/" className="btn btn-ghost text-xl">
+        <motion.a
+          href="/"
+          className="btn btn-ghost text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
           IQ Scaffold
-        </a>
+        </motion.a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a href="/features">Platform</a>
+            <motion.a href="/features" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              Platform
+            </motion.a>
           </li>
           <li>
-            <a href="/pricing">Pricing</a>
+            <motion.a href="/pricing" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              Pricing
+            </motion.a>
           </li>
           <li>
-            <a href="/about">About</a>
+            <motion.a href="/about" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              About
+            </motion.a>
           </li>
           <li>
-            <a href="https://iqkv.com/">Explore Platform</a>
+            <motion.a
+              href="https://iqkv.com/"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Explore Platform
+            </motion.a>
           </li>
         </ul>
       </div>
@@ -64,15 +87,25 @@ export function TopNav() {
           <UserMenu />
         ) : (
           <>
-            <a href="https://auth.iqscaffold.com/login" className="btn btn-ghost">
+            <motion.a
+              href="https://auth.iqscaffold.com/login"
+              className="btn btn-ghost"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
               Login
-            </a>
-            <a href="https://auth.iqscaffold.com/register" className="btn btn-primary">
+            </motion.a>
+            <motion.a
+              href="https://auth.iqscaffold.com/register"
+              className="btn btn-primary shadow-lg"
+              whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.15)" }}
+              whileTap={{ scale: 0.95 }}
+            >
               Sign Up
-            </a>
+            </motion.a>
           </>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

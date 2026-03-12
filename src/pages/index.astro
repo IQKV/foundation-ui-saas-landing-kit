@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { Icon } from "@/components/Icon";
-import { IconBox } from "@/components/IconBox";
+import { AnimatedHero } from "@/components/AnimatedHero";
+import { AnimatedCard } from "@/components/AnimatedCard";
+import { AnimatedSection } from "@/components/AnimatedSection";
 import {
-  GithubIcon,
   SecurityLockIcon,
   CreditCardIcon,
   AnalyticsUpIcon,
@@ -14,134 +14,91 @@ import {
 ---
 
 <BaseLayout title="IQ Scaffold - Enterprise Microservices Platform">
-  <div class="container mx-auto px-4 py-16">
-    <!-- Hero Section -->
-    <section class="hero min-h-[600px]">
-      <div class="hero-content text-center">
-        <div class="max-w-4xl">
-          <h1 class="text-5xl font-bold mb-6">
-            Launch Your SaaS Product in Weeks, Not Months
-          </h1>
-          <p class="text-xl mb-4">
-            Production-ready microservices platform with Identity, Payments, and
-            CRM. Skip the infrastructure complexity and focus on building
-            features your customers actually want.
-          </p>
-          <p class="text-lg mb-8 opacity-80">
-            Open source, battle-tested, and designed for scale. Everything you
-            need to go from idea to production.
-          </p>
-          <div
-            class="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          >
-            <a
-              href="https://github.com/IQKV/microservices-platform"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-primary btn-lg gap-2"
-            >
-              <Icon icon={GithubIcon} size={20} client:load />
-              View on GitHub
-            </a>
-            <a href="/features" class="btn btn-outline btn-lg">
-              Explore Platform
-            </a>
-          </div>
-          <div class="badge badge-ghost mt-6">
-            Free & Open Source • Apache 2.0 License • Production Ready
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- Hero Section -->
+  <AnimatedHero client:load />
 
-    <!-- Value Propositions -->
-    <section class="py-20">
-      <h2 class="text-3xl font-bold text-center mb-12">
-        Everything You Need to Scale
-      </h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="card bg-base-100 shadow-xl">
-          <div class="card-body">
-            <IconBox icon={SecurityLockIcon} client:load />
-            <h3 class="card-title">Identity & Access</h3>
-            <p>
-              Multi-tenant authentication, role-based access control, and secure
-              user management out of the box
-            </p>
-          </div>
+  <!-- Value Propositions -->
+  <div class="container mx-auto px-4">
+    <AnimatedSection client:load>
+      <section class="py-20">
+        <h2 class="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          Everything You Need to Scale
+        </h2>
+        <p class="text-center text-base-content/60 mb-12 text-lg">
+          Production-ready services that power your business from day one
+        </p>
+        <div class="grid md:grid-cols-3 gap-8">
+          <AnimatedCard
+            icon={SecurityLockIcon}
+            title="Identity & Access"
+            description="Multi-tenant authentication, role-based access control, and secure user management out of the box"
+            delay={0.1}
+            client:load
+          />
+          <AnimatedCard
+            icon={CreditCardIcon}
+            title="Payment Operations"
+            description="Accept payments, manage subscriptions, onboard merchants, and handle revenue sharing automatically"
+            delay={0.2}
+            client:load
+          />
+          <AnimatedCard
+            icon={AnalyticsUpIcon}
+            title="CRM & Sales"
+            description="Complete lead-to-customer pipeline with scoring, conversion tracking, and sales analytics"
+            delay={0.3}
+            client:load
+          />
         </div>
-        <div class="card bg-base-100 shadow-xl">
-          <div class="card-body">
-            <IconBox icon={CreditCardIcon} client:load />
-            <h3 class="card-title">Payment Operations</h3>
-            <p>
-              Accept payments, manage subscriptions, onboard merchants, and
-              handle revenue sharing automatically
-            </p>
-          </div>
-        </div>
-        <div class="card bg-base-100 shadow-xl">
-          <div class="card-body">
-            <IconBox icon={AnalyticsUpIcon} client:load />
-            <h3 class="card-title">CRM & Sales</h3>
-            <p>
-              Complete lead-to-customer pipeline with scoring, conversion
-              tracking, and sales analytics
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </AnimatedSection>
 
     <!-- Business Benefits -->
-    <section class="py-20 bg-base-200">
-      <div class="max-w-4xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12">
-          Built for Business Growth
-        </h2>
-        <div class="grid md:grid-cols-2 gap-8">
-          <div class="card bg-base-100 shadow-lg">
-            <div class="card-body">
-              <IconBox icon={RocketIcon} size={20} client:load />
-              <h3 class="card-title text-lg">Launch Faster</h3>
-              <p>
-                Skip months of infrastructure development. Deploy essential
-                business services in days.
-              </p>
-            </div>
-          </div>
-          <div class="card bg-base-100 shadow-lg">
-            <div class="card-body">
-              <IconBox icon={AnalyticsUpIcon} size={20} client:load />
-              <h3 class="card-title text-lg">Scale Confidently</h3>
-              <p>
-                Multi-tenant architecture with data isolation, rate limiting,
-                and fault tolerance built in.
-              </p>
-            </div>
-          </div>
-          <div class="card bg-base-100 shadow-lg">
-            <div class="card-body">
-              <IconBox icon={Shield01Icon} size={20} client:load />
-              <h3 class="card-title text-lg">Stay Compliant</h3>
-              <p>
-                Security audit trails, data isolation, and encrypted credentials
-                for regulated industries.
-              </p>
-            </div>
-          </div>
-          <div class="card bg-base-100 shadow-lg">
-            <div class="card-body">
-              <IconBox icon={DollarSquareIcon} size={20} client:load />
-              <h3 class="card-title text-lg">Reduce Costs</h3>
-              <p>
-                Proven patterns and production-ready code eliminate expensive
-                trial-and-error development.
-              </p>
-            </div>
+    <AnimatedSection client:load delay={0.2}>
+      <section class="py-20 bg-gradient-to-br from-base-200 to-base-100 rounded-3xl">
+        <div class="max-w-5xl mx-auto px-4">
+          <h2 class="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+            Built for Business Growth
+          </h2>
+          <p class="text-center text-base-content/60 mb-12 text-lg">
+            Accelerate your journey from startup to scale-up
+          </p>
+          <div class="grid md:grid-cols-2 gap-6">
+            <AnimatedCard
+              icon={RocketIcon}
+              title="Launch Faster"
+              description="Skip months of infrastructure development. Deploy essential business services in days."
+              delay={0.1}
+              size={20}
+              client:load
+            />
+            <AnimatedCard
+              icon={AnalyticsUpIcon}
+              title="Scale Confidently"
+              description="Multi-tenant architecture with data isolation, rate limiting, and fault tolerance built in."
+              delay={0.2}
+              size={20}
+              client:load
+            />
+            <AnimatedCard
+              icon={Shield01Icon}
+              title="Stay Compliant"
+              description="Security audit trails, data isolation, and encrypted credentials for regulated industries."
+              delay={0.3}
+              size={20}
+              client:load
+            />
+            <AnimatedCard
+              icon={DollarSquareIcon}
+              title="Reduce Costs"
+              description="Proven patterns and production-ready code eliminate expensive trial-and-error development."
+              delay={0.4}
+              size={20}
+              client:load
+            />
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </AnimatedSection>
   </div>
 </BaseLayout>
