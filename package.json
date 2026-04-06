@@ -1,5 +1,5 @@
 {
-  "name": "@iqscaffold/standard-saas-landing-kit",
+  "name": "@iqkv/standard-saas-landing-kit",
   "version": "0.0.0",
   "description": "A simple SaaS landing page kit with Astro, React, Tailwind CSS, and DaisyUI",
   "license": "Apache-2.0",
