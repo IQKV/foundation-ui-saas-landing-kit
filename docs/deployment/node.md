@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - Node.js >= 22.13.0
-- pnpm >= 10.32.1
+- pnpm >= 10.33.0
 
 ## Local Development
 
@@ -45,7 +45,7 @@ Create `Dockerfile` in project root:
 FROM node:22.13-alpine AS builder
 
 # Install pnpm
-RUN corepack enable && corepack prepare pnpm@10.32.1 --activate
+RUN corepack enable && corepack prepare pnpm@10.33.0 --activate
 
 WORKDIR /app
 
