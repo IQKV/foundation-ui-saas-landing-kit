@@ -3,7 +3,7 @@ import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
-  site: "https://www.iqscaffold.com",
+  site: "https://www.iqkv.dev",
   integrations: [
     react(),
     tailwind({
