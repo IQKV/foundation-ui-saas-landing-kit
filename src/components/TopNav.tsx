@@ -51,7 +51,7 @@ export function TopNav() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          IQ Scaffold
+          IQ  Key Value
         </motion.a>
       </div>
       <div className="navbar-center hidden lg:flex">
