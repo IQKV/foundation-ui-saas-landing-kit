@@ -88,7 +88,7 @@ export function TopNav() {
         ) : (
           <>
             <motion.a
-              href="https://auth.iqkv.dev/login"
+              href="https://auth.iqkv.site/login"
               className="btn btn-ghost"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -96,7 +96,7 @@ export function TopNav() {
               Login
             </motion.a>
             <motion.a
-              href="https://auth.iqkv.dev/register"
+              href="https://auth.iqkv.site/register"
               className="btn btn-primary shadow-lg"
               whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.15)" }}
               whileTap={{ scale: 0.95 }}
