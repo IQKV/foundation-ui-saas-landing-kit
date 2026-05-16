@@ -78,7 +78,7 @@ export function TopNav() {
           </li>
           <li>
             <motion.a
-              href="https://iqkv.com/"
+              href="https://iqkv.dev/"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

@@ -6,11 +6,11 @@ import {
   Tick02Icon,
   SecurityLockIcon,
   CreditCardIcon,
-  AnalyticsUpIcon,
   Globe02Icon,
   Database01Icon,
   BookOpen01Icon,
   GithubIcon,
+  Settings01Icon,
 } from "@hugeicons/core-free-icons";
 ---
 
@@ -43,7 +43,7 @@ import {
                 className="text-primary flex-shrink-0 mt-0.5"
                 client:load
               />
-              <span>All 6 microservices included</span>
+              <span>All 3 microservices included (IAM, Gateway, Billing)</span>
             </li>
             <li class="flex items-start gap-2">
               <Icon
@@ -112,37 +112,37 @@ import {
         <div class="card bg-base-100 shadow-xl">
           <div class="card-body items-center text-center">
             <IconBox icon={SecurityLockIcon} client:load />
-            <p class="font-medium">Authentication & Authorization</p>
-          </div>
-        </div>
-        <div class="card bg-base-100 shadow-xl">
-          <div class="card-body items-center text-center">
-            <IconBox icon={CreditCardIcon} client:load />
-            <p class="font-medium">Payment Processing</p>
-          </div>
-        </div>
-        <div class="card bg-base-100 shadow-xl">
-          <div class="card-body items-center text-center">
-            <IconBox icon={AnalyticsUpIcon} client:load />
-            <p class="font-medium">CRM & Analytics</p>
+            <p class="font-medium">IAM — Identity & Access</p>
           </div>
         </div>
         <div class="card bg-base-100 shadow-xl">
           <div class="card-body items-center text-center">
             <IconBox icon={Globe02Icon} client:load />
-            <p class="font-medium">API Gateway</p>
+            <p class="font-medium">Gateway — Reactive API Gateway</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body items-center text-center">
+            <IconBox icon={CreditCardIcon} client:load />
+            <p class="font-medium">Billing — Stripe & Subscriptions</p>
           </div>
         </div>
         <div class="card bg-base-100 shadow-xl">
           <div class="card-body items-center text-center">
             <IconBox icon={Database01Icon} client:load />
-            <p class="font-medium">Multi-Tenant Architecture</p>
+            <p class="font-medium">Hybrid Tenancy — B2B + B2C</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body items-center text-center">
+            <IconBox icon={Settings01Icon} client:load />
+            <p class="font-medium">Kubernetes + Helm Charts</p>
           </div>
         </div>
         <div class="card bg-base-100 shadow-xl">
           <div class="card-body items-center text-center">
             <IconBox icon={BookOpen01Icon} client:load />
-            <p class="font-medium">Complete Documentation</p>
+            <p class="font-medium">10-Stage CI/CD Pipeline</p>
           </div>
         </div>
       </div>
