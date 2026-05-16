@@ -3,6 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { AnimatedHero } from "@/components/AnimatedHero";
 import { AnimatedCard } from "@/components/AnimatedCard";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { Icon } from "@/components/Icon";
 import {
   SecurityLockIcon,
   CreditCardIcon,
@@ -103,7 +104,7 @@ import {
             <div class="card-body">
               <div class="flex items-center gap-4 mb-4">
                 <div class="p-3 bg-primary/10 rounded-xl">
-                  <Globe02Icon className="w-8 h-8 text-primary" />
+                  <Icon icon={Globe02Icon} size={32} className="text-primary" client:load />
                 </div>
                 <h3 class="text-2xl font-bold text-primary">Tenant App</h3>
               </div>
@@ -140,7 +141,7 @@ import {
             <div class="card-body">
               <div class="flex items-center gap-4 mb-4">
                 <div class="p-3 bg-secondary/10 rounded-xl">
-                  <Shield01Icon className="w-8 h-8 text-secondary" />
+                  <Icon icon={Shield01Icon} size={32} className="text-secondary" client:load />
                 </div>
                 <h3 class="text-2xl font-bold text-secondary">Platform Admin</h3>
               </div>
