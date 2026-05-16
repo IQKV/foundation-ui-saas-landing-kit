@@ -111,13 +111,13 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 
 The project includes comprehensive linting and formatting:
 
-### ESLint
+### Oxlint
 
 - Configured for TypeScript, React, and Astro
 - React Hooks rules enabled
 - Automatic fixing on save (in VS Code)
 
-### Prettier
+### Oxfmt
 
 - Consistent code formatting
 - Astro file support
