@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Icon } from "@/components/Icon";
 import { GithubIcon } from "@hugeicons/core-free-icons";
 
+const APP_URL = import.meta.env.PUBLIC_APP_URL ?? "https://app.iqkv.site";
+
 export function AnimatedHero() {
   return (
     <section className="relative min-h-[700px] flex items-center justify-center overflow-hidden">
@@ -35,7 +37,7 @@ export function AnimatedHero() {
               transition={{ delay: 0.2, duration: 0.5 }}
             >
               <span className="badge badge-lg badge-primary gap-2 px-4 py-3">
-                🚀 Production Ready • Open Source • Apache 2.0
+                🚀 Java 25 · Spring Boot 4 · Apache 2.0
               </span>
             </motion.div>
 
@@ -45,7 +47,7 @@ export function AnimatedHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              Launch Your SaaS in Weeks, Not Months
+              Hybrid Tenancy SaaS Foundation
             </motion.h1>
 
             <motion.p
@@ -54,7 +56,7 @@ export function AnimatedHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
             >
-              Production-ready microservices platform with Identity, Payments, and CRM
+              One codebase. Multi-tenant B2B or single-tenant B2C — switch with a config flag.
             </motion.p>
 
             <motion.p
@@ -63,8 +65,8 @@ export function AnimatedHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
             >
-              Skip the infrastructure complexity and focus on building features your customers
-              actually want
+              Production-ready IAM, API Gateway, and Billing services on Kubernetes.
+              Schema-per-tenant PostgreSQL isolation. 10-stage CI/CD pipeline included.
             </motion.p>
 
             <motion.div
@@ -85,12 +87,12 @@ export function AnimatedHero() {
                 View on GitHub
               </motion.a>
               <motion.a
-                href="/features"
+                href={`${APP_URL}/signup`}
                 className="btn btn-outline btn-lg"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Explore Platform
+                Get Started Free
               </motion.a>
             </motion.div>
           </motion.div>
@@ -100,18 +102,12 @@ export function AnimatedHero() {
       {/* Floating elements */}
       <motion.div
         className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full blur-xl"
-        animate={{
-          y: [0, -20, 0],
-          scale: [1, 1.1, 1],
-        }}
+        animate={{ y: [0, -20, 0], scale: [1, 1.1, 1] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute bottom-20 right-10 w-32 h-32 bg-secondary/10 rounded-full blur-xl"
-        animate={{
-          y: [0, 20, 0],
-          scale: [1, 1.2, 1],
-        }}
+        animate={{ y: [0, 20, 0], scale: [1, 1.2, 1] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       />
     </section>

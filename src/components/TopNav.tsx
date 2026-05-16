@@ -2,8 +2,12 @@ import { motion } from "framer-motion";
 import { useAuthStore } from "@/lib/auth-store";
 import { UserMenu } from "./UserMenu";
 
+// Auth URLs come from env vars so they work across environments.
+const APP_URL = import.meta.env.PUBLIC_APP_URL ?? "https://app.iqkv.site";
+
 export function TopNav() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+  const isLoading = useAuthStore((s) => s.isLoading);
 
   return (
     <motion.div
@@ -54,6 +58,7 @@ export function TopNav() {
           IQ Key Value
         </motion.a>
       </div>
+
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
@@ -82,13 +87,20 @@ export function TopNav() {
           </li>
         </ul>
       </div>
+
       <div className="navbar-end gap-2">
-        {isAuthenticated ? (
+        {/* Show a skeleton while the session check is in flight */}
+        {isLoading ? (
+          <div className="flex gap-2">
+            <div className="skeleton h-9 w-16 rounded-lg" />
+            <div className="skeleton h-9 w-20 rounded-lg" />
+          </div>
+        ) : isAuthenticated ? (
           <UserMenu />
         ) : (
           <>
             <motion.a
-              href="https://auth.iqkv.site/login"
+              href={`${APP_URL}/sign-in`}
               className="btn btn-ghost"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -96,7 +108,7 @@ export function TopNav() {
               Login
             </motion.a>
             <motion.a
-              href="https://auth.iqkv.site/register"
+              href={`${APP_URL}/signup`}
               className="btn btn-primary shadow-lg"
               whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.15)" }}
               whileTap={{ scale: 0.95 }}

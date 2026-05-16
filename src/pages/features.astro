@@ -4,19 +4,18 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import { FeatureCard } from "@/components/FeatureCard";
 import { IconBox } from "@/components/IconBox";
 import {
-  UserIcon,
+  SecurityLockIcon,
   Globe02Icon,
   CreditCardIcon,
-  UserMultipleIcon,
-  AnalyticsUpIcon,
   Shield01Icon,
   RocketIcon,
   ViewIcon,
   PuzzleIcon,
+  Settings01Icon,
 } from "@hugeicons/core-free-icons";
 ---
 
-<BaseLayout title="Platform Services - IQ Key Value">
+<BaseLayout title="Platform Services — IQ Key Value">
   <div class="container mx-auto px-4 py-16">
     <AnimatedSection client:load>
       <div class="text-center mb-16">
@@ -24,128 +23,129 @@ import {
           Platform Services
         </h1>
         <p class="text-xl max-w-2xl mx-auto text-base-content/70">
-          Six production-ready microservices covering essential business operations
+          Three production-ready microservices — each independently deployable with its own
+          Helm chart, CI/CD pipeline, and PostgreSQL database.
         </p>
       </div>
     </AnimatedSection>
 
     <div class="grid md:grid-cols-2 gap-8 mb-16">
+      <!-- IAM Service -->
       <FeatureCard
-        icon={UserIcon}
-        title="User Service"
-        description="Centralized identity and access management for your entire platform."
+        icon={SecurityLockIcon}
+        title="IAM Service"
+        description="Full identity lifecycle for multi-tenant SaaS. Handles signup, authentication, tenant provisioning, and access control."
         features={[
-          "Secure authentication with email verification",
-          "Role-based access control for teams and organizations",
-          "Multi-tenant user isolation",
-          "Password reset and account security",
-          "Complete audit trails for compliance",
+          "Self-service signup — creates user + tenant in one call",
+          "Signup by invitation — time-limited (72 h), MEMBER authority by default",
+          "JWT RS256 — 15-min access tokens, 7-day refresh tokens with tenant_id",
+          "Brute-force protection — 5 attempts → 15-min lockout per email",
+          "Token revocation — JTI denylist + global signout timestamp",
+          "Password reset — rate-limited (3 req / 15 min), 1-hour TTL tokens",
+          "Email verification with Thymeleaf transactional emails",
+          "Tenant lifecycle — suspend, delete, retry provisioning, ShedLock reaper",
+          "JWKS endpoint for gateway JWT validation",
         ]}
         delay={0.1}
         client:load
       />
 
+      <!-- Gateway Service -->
       <FeatureCard
         icon={Globe02Icon}
         title="Gateway Service"
-        description="Intelligent API gateway protecting and routing all platform traffic."
+        description="Reactive Spring Cloud Gateway — the single entry point for the platform. Handles all cross-cutting concerns so downstream services receive a clean, enriched context."
         features={[
-          "Automatic rate limiting to prevent abuse",
-          "Circuit breakers for service resilience",
-          "Request routing and load balancing",
-          "Multi-tenant request isolation",
-          "Real-time monitoring and alerts",
+          "JWT RS256 validation via JWKS (Spring Security OAuth2 Resource Server)",
+          "Header sanitization — strips X-User-*, X-Tenant-ID before JWT processing",
+          "Context propagation — X-User-ID, X-User-Email, X-User-Authorities, X-Tenant-ID",
+          "Correlation ID — generates or propagates X-Correlation-ID on every request",
+          "Security response headers — X-Content-Type-Options, X-Frame-Options, etc.",
+          "Aggregated Swagger UI — proxies downstream /api-docs through the gateway",
+          "Configurable public paths via iqkv.gateway.public-paths",
+          "Prometheus metrics + structured JSON logging with MDC context",
         ]}
         delay={0.2}
         client:load
       />
 
+      <!-- Billing Service -->
       <FeatureCard
         icon={CreditCardIcon}
         title="Billing Service"
-        description="Complete payment operations from one-time charges to complex revenue sharing."
+        description="Gateway-agnostic payment abstraction layer. Handles tenant-to-customer mapping, webhook ingestion, and lifecycle event publishing. No custom billing logic lives here."
         features={[
-          "Accept payments with multiple payment gateways",
-          "Manage subscriptions with automated billing",
-          "Onboard merchants with Stripe Connect",
-          "Handle refunds and disputes automatically",
-          "Revenue sharing and platform fees",
-          "Invoice generation and tracking",
+          "Automatic customer provisioning on tenant.provisioned RabbitMQ event",
+          "Billing settings — billing email, tax ID / VAT/GST per tenant",
+          "Stripe integration via PaymentGatewayPort Strategy pattern",
+          "Idempotent webhook processing — duplicate delivery is safe",
+          "Subscription lifecycle events — created, cancelled, invoice.paid, payment.failed",
+          "Plan catalog with PLATFORM_ADMIN management endpoints",
+          "Active subscription query for TENANT_OWNER and MEMBER roles",
+          "Multi-gateway ready — swap Stripe for any provider without business logic changes",
         ]}
         delay={0.3}
         client:load
       />
 
+      <!-- Hybrid Tenancy -->
       <FeatureCard
-        icon={AnalyticsUpIcon}
-        title="Lead Service"
-        description="Capture, qualify, and convert leads into customers efficiently."
+        icon={Settings01Icon}
+        title="Hybrid Tenancy Model"
+        description="One codebase, two deployment models. Switch between multi-tenant B2B and single-tenant B2C with a single configuration flag."
         features={[
-          "Multi-source lead capture and tracking",
-          "Automatic lead scoring (0-100)",
-          "Lead assignment to sales teams",
-          "Qualification workflows",
-          "Seamless conversion to contacts",
+          "Multi-tenant mode — schema-per-tenant PostgreSQL isolation",
+          "Single-tenant mode — all users join a pre-configured default workspace",
+          "Liquibase per-tenant schema versioning and migrations",
+          "RabbitMQ async tenant provisioning workflow",
+          "Automatic tenant context resolution from JWT claims",
+          "ShedLock-guarded reaper cleans up stuck PROVISIONING tenants",
+          "No code changes required — set platform.rolloutMode in config",
+          "Independent tenant status transitions — ACTIVE, SUSPENDED, DELETED",
         ]}
         delay={0.4}
         client:load
       />
-
-      <FeatureCard
-        icon={UserMultipleIcon}
-        title="Contact Service"
-        description="Comprehensive contact management with bulk operations support."
-        features={[
-          "Complete contact lifecycle management",
-          "Bulk operations for efficiency",
-          "Company associations and relationships",
-          "Lead conversion tracking",
-          "Activity history and notes",
-        ]}
-        delay={0.5}
-        client:load
-      />
-
-      <FeatureCard
-        icon={AnalyticsUpIcon}
-        title="Pipeline Service"
-        description="Sales pipeline management with analytics and conversion tracking."
-        features={[
-          "Customizable pipeline stages",
-          "Follow-up scheduling and reminders",
-          "Real-time conversion analytics",
-          "Sales velocity tracking",
-          "Team performance dashboards",
-        ]}
-        delay={0.6}
-        client:load
-      />
     </div>
 
-    <AnimatedSection client:load delay={0.3}>
-      <section class="card bg-gradient-to-br from-base-200 to-base-100 shadow-xl border border-base-300/50">
+    <!-- Tech stack -->
+    <AnimatedSection client:load delay={0.2}>
+      <section class="card bg-gradient-to-br from-base-200 to-base-100 shadow-xl border border-base-300/50 mb-8">
         <div class="card-body">
-          <h2 class="card-title text-3xl mb-8 justify-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Cross-Platform Capabilities
+          <h2 class="card-title text-3xl mb-2 justify-center bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            Technology Stack
           </h2>
+          <p class="text-center text-base-content/60 mb-8">
+            Enterprise Java without overhead — proven tools, long-term maintainability
+          </p>
           <div class="grid md:grid-cols-2 gap-8">
+            <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-base-100 transition-colors">
+              <IconBox icon={SecurityLockIcon} size={20} client:load />
+              <div>
+                <h3 class="font-semibold mb-2 text-lg">Backend</h3>
+                <p class="text-sm text-base-content/70">
+                  Java 25 · Spring Boot 4.x · Spring Cloud Gateway (WebFlux) ·
+                  MyBatis 3.x · PostgreSQL 17 · RabbitMQ · JJWT RS256 · ShedLock 7.x
+                </p>
+              </div>
+            </div>
             <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-base-100 transition-colors">
               <IconBox icon={Shield01Icon} size={20} client:load />
               <div>
-                <h3 class="font-semibold mb-2 text-lg">Security & Compliance</h3>
+                <h3 class="font-semibold mb-2 text-lg">Security</h3>
                 <p class="text-sm text-base-content/70">
-                  Multi-tenant data isolation, encrypted credentials, audit
-                  logging, and role-based access control
+                  Spring Security OAuth2 Resource Server · BCrypt strength 12 ·
+                  JWKS endpoint · JTI denylist · Two-layer token revocation · Stripe SDK
                 </p>
               </div>
             </div>
             <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-base-100 transition-colors">
               <IconBox icon={RocketIcon} size={20} client:load />
               <div>
-                <h3 class="font-semibold mb-2 text-lg">Scalability & Performance</h3>
+                <h3 class="font-semibold mb-2 text-lg">DevOps</h3>
                 <p class="text-sm text-base-content/70">
-                  Distributed caching, rate limiting, circuit breakers, and
-                  independent service scaling
+                  Docker multi-stage builds · Kubernetes + Helm charts · Drone CI/CD
+                  10-stage pipeline · Traefik · Liquibase · Three environments (local / staging / prod)
                 </p>
               </div>
             </div>
@@ -154,18 +154,28 @@ import {
               <div>
                 <h3 class="font-semibold mb-2 text-lg">Observability</h3>
                 <p class="text-sm text-base-content/70">
-                  Distributed tracing, metrics collection, structured logging, and
-                  real-time monitoring
+                  Prometheus · Grafana dashboards · Loki + Promtail · Micrometer ·
+                  Structured JSON logging · Correlation ID tracing · Actuator health probes
                 </p>
               </div>
             </div>
             <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-base-100 transition-colors">
               <IconBox icon={PuzzleIcon} size={20} client:load />
               <div>
-                <h3 class="font-semibold mb-2 text-lg">Integration Ready</h3>
+                <h3 class="font-semibold mb-2 text-lg">Quality Gates</h3>
                 <p class="text-sm text-base-content/70">
-                  Event-driven architecture, REST APIs, webhook support, and
-                  standardized error handling
+                  SonarQube · PMD · SpotBugs · Checkstyle (Google Java Style) ·
+                  JaCoCo coverage thresholds · ArchUnit boundary validation · Testcontainers
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4 p-4 rounded-lg hover:bg-base-100 transition-colors">
+              <IconBox icon={Globe02Icon} size={20} client:load />
+              <div>
+                <h3 class="font-semibold mb-2 text-lg">Frontend</h3>
+                <p class="text-sm text-base-content/70">
+                  React 19 · TanStack Router (file-based) · TanStack Query · Mantine UI ·
+                  Zustand · Lingui i18n · Vite · Astro landing kit
                 </p>
               </div>
             </div>

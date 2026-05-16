@@ -6,46 +6,47 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import {
   SecurityLockIcon,
   CreditCardIcon,
-  AnalyticsUpIcon,
+  Globe02Icon,
   RocketIcon,
   Shield01Icon,
   DollarSquareIcon,
+  Settings01Icon,
 } from "@hugeicons/core-free-icons";
 ---
 
-<BaseLayout title="IQ Key Value - Enterprise Microservices Platform">
-  <!-- Hero Section -->
+<BaseLayout title="IQ Key Value — Hybrid Tenancy SaaS Foundation">
+  <!-- Hero -->
   <AnimatedHero client:load />
 
-  <!-- Value Propositions -->
+  <!-- Three core services -->
   <div class="container mx-auto px-4">
     <AnimatedSection client:load>
       <section class="py-20">
         <h2 class="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-          Everything You Need to Scale
+          Three Production-Ready Services
         </h2>
         <p class="text-center text-base-content/60 mb-12 text-lg">
-          Production-ready services that power your business from day one
+          Each service ships with its own Helm chart, CI/CD pipeline, and PostgreSQL schema
         </p>
         <div class="grid md:grid-cols-3 gap-8">
           <AnimatedCard
             icon={SecurityLockIcon}
-            title="Identity & Access"
-            description="Multi-tenant authentication, role-based access control, and secure user management out of the box"
+            title="IAM Service"
+            description="Full identity lifecycle — signup, JWT RS256 auth, multi-tenant membership, invitation flows, brute-force protection, and token revocation."
             delay={0.1}
             client:load
           />
           <AnimatedCard
-            icon={CreditCardIcon}
-            title="Payment Operations"
-            description="Accept payments, manage subscriptions, onboard merchants, and handle revenue sharing automatically"
+            icon={Globe02Icon}
+            title="Gateway Service"
+            description="Reactive Spring Cloud Gateway — JWT validation via JWKS, header sanitization, tenant context propagation, correlation IDs, and security response headers."
             delay={0.2}
             client:load
           />
           <AnimatedCard
-            icon={AnalyticsUpIcon}
-            title="CRM & Sales"
-            description="Complete lead-to-customer pipeline with scoring, conversion tracking, and sales analytics"
+            icon={CreditCardIcon}
+            title="Billing Service"
+            description="Gateway-agnostic payment abstraction — Stripe integration, per-tenant customer provisioning, subscription lifecycle, idempotent webhook processing."
             delay={0.3}
             client:load
           />
@@ -53,7 +54,42 @@ import {
       </section>
     </AnimatedSection>
 
-    <!-- Business Benefits -->
+    <!-- Hybrid tenancy highlight -->
+    <AnimatedSection client:load delay={0.1}>
+      <section class="py-16">
+        <div class="card bg-gradient-to-br from-primary/5 to-secondary/5 border border-primary/20 shadow-xl">
+          <div class="card-body md:flex-row items-center gap-8">
+            <div class="flex-1">
+              <h2 class="text-3xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Hybrid Tenancy Model
+              </h2>
+              <p class="text-base-content/70 mb-4">
+                Deploy as <strong>multi-tenant B2B SaaS</strong> (schema-per-tenant PostgreSQL isolation)
+                or <strong>single-tenant B2C</strong> (all users in one default workspace) — from the
+                same codebase. Switch via a single config flag, no code changes required.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="badge badge-primary badge-lg">Multi-Tenant B2B</span>
+                <span class="badge badge-secondary badge-lg">Single-Tenant B2C</span>
+                <span class="badge badge-outline badge-lg">Schema-Per-Tenant</span>
+                <span class="badge badge-outline badge-lg">RabbitMQ Provisioning</span>
+              </div>
+            </div>
+            <div class="flex-shrink-0">
+              <AnimatedCard
+                icon={Settings01Icon}
+                title="One flag, two models"
+                description="platform.rolloutMode: MULTI_TENANT or SINGLE_TENANT"
+                size={20}
+                client:load
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </AnimatedSection>
+
+    <!-- Business benefits -->
     <AnimatedSection client:load delay={0.2}>
       <section class="py-20 bg-gradient-to-br from-base-200 to-base-100 rounded-3xl">
         <div class="max-w-5xl mx-auto px-4">
@@ -66,32 +102,32 @@ import {
           <div class="grid md:grid-cols-2 gap-6">
             <AnimatedCard
               icon={RocketIcon}
-              title="Launch Faster"
-              description="Skip months of infrastructure development. Deploy essential business services in days."
+              title="Launch in Days"
+              description="Skip months of infrastructure work. IAM, Gateway, and Billing are production-ready — deploy with Helm and start building your vertical."
               delay={0.1}
               size={20}
               client:load
             />
             <AnimatedCard
-              icon={AnalyticsUpIcon}
-              title="Scale Confidently"
-              description="Multi-tenant architecture with data isolation, rate limiting, and fault tolerance built in."
+              icon={Shield01Icon}
+              title="Security by Default"
+              description="RS256 JWT, JTI denylist, brute-force lockout, header sanitization, BCrypt strength 12, and two-layer token revocation out of the box."
               delay={0.2}
               size={20}
               client:load
             />
             <AnimatedCard
-              icon={Shield01Icon}
-              title="Stay Compliant"
-              description="Security audit trails, data isolation, and encrypted credentials for regulated industries."
+              icon={SecurityLockIcon}
+              title="True Data Isolation"
+              description="Schema-per-tenant PostgreSQL with Liquibase per-tenant migrations. Tenant context flows automatically from JWT claims through the gateway."
               delay={0.3}
               size={20}
               client:load
             />
             <AnimatedCard
               icon={DollarSquareIcon}
-              title="Reduce Costs"
-              description="Proven patterns and production-ready code eliminate expensive trial-and-error development."
+              title="Zero Licensing Cost"
+              description="Apache 2.0 — use it for personal projects, commercial products, or anything in between. No usage limits, no vendor lock-in."
               delay={0.4}
               size={20}
               client:load
