@@ -37,7 +37,7 @@ export function AnimatedHero() {
               transition={{ delay: 0.2, duration: 0.5 }}
             >
               <span className="badge badge-lg badge-primary gap-2 px-4 py-3">
-                🚀 Java 25 · Spring Boot 4 · Apache 2.0
+                🚀 Java 25 · Spring Boot 4 · React 19
               </span>
             </motion.div>
 
