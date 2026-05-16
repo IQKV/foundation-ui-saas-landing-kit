@@ -106,6 +106,46 @@ import {
         delay={0.4}
         client:load
       />
+
+      <!-- Tenant App -->
+      <FeatureCard
+        icon={Globe02Icon}
+        title="Tenant App"
+        description="The customer-facing surface of the platform. A React 19 SPA built with Mantine UI and Feature-Sliced Design."
+        features={[
+          "Two-step sign-in flow with tenant discovery",
+          "Self-service signup with async provisioning polling",
+          "Workspace dashboard with basic stats and team overview",
+          "Team management — searchable member list and invitation panel",
+          "Invitation system — send, preview, and accept workspace invites",
+          "My Account — profile editing, password reset, and organization list",
+          "Internationalization with Lingui (English catalog implemented)",
+          "Session security — 30-min inactivity timeout and silent token refresh",
+          "Runtime configuration via public/config.js overrides",
+        ]}
+        delay={0.5}
+        client:load
+      />
+
+      <!-- Platform Admin -->
+      <FeatureCard
+        icon={Shield01Icon}
+        title="Platform Admin"
+        description="The internal operator console for platform management. Requires PLATFORM_ADMIN authority to access."
+        features={[
+          "Dashboard with real-time count cards for users, orgs, and subscriptions",
+          "Global User management — paginated list, detail view, and profile edits",
+          "Organization administration — overview, members, and billing tabs",
+          "Invitation management — propose, edit, and revoke platform-wide invites",
+          "Subscription monitoring — read-only global list with status filters",
+          "Plan catalog CRUD — create, edit, and delete billing plans",
+          "Operator account management — profile and password updates",
+          "mantine-datatable integration for advanced filtering and sorting",
+          "Strict RBAC enforcement with automated route guards",
+        ]}
+        delay={0.6}
+        client:load
+      />
     </div>
 
     <!-- Tech stack -->

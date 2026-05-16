@@ -44,34 +44,64 @@ import {
       <!-- What we provide -->
       <section>
         <h2 class="text-2xl font-semibold mb-6">What's Included</h2>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="card bg-base-100 shadow-xl">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="card bg-base-100 shadow-xl border border-base-200">
             <div class="card-body">
               <IconBox icon={SecurityLockIcon} client:load />
-              <h3 class="card-title">IAM Service</h3>
+              <h3 class="card-title text-primary">IAM Service</h3>
               <p class="text-sm text-base-content/70">
                 Full identity lifecycle — signup, JWT RS256 auth, multi-tenant membership,
                 invitation flows, brute-force protection, token revocation, email verification.
               </p>
             </div>
           </div>
-          <div class="card bg-base-100 shadow-xl">
+          <div class="card bg-base-100 shadow-xl border border-base-200">
             <div class="card-body">
               <IconBox icon={Globe02Icon} client:load />
-              <h3 class="card-title">Gateway Service</h3>
+              <h3 class="card-title text-primary">Gateway Service</h3>
               <p class="text-sm text-base-content/70">
                 Reactive Spring Cloud Gateway — JWT validation, header sanitization, tenant
                 context propagation, correlation IDs, security response headers.
               </p>
             </div>
           </div>
-          <div class="card bg-base-100 shadow-xl">
+          <div class="card bg-base-100 shadow-xl border border-base-200">
             <div class="card-body">
               <IconBox icon={CreditCardIcon} client:load />
-              <h3 class="card-title">Billing Service</h3>
+              <h3 class="card-title text-primary">Billing Service</h3>
               <p class="text-sm text-base-content/70">
                 Gateway-agnostic payment abstraction — Stripe integration, per-tenant customer
                 provisioning, subscription lifecycle, idempotent webhook processing.
+              </p>
+            </div>
+          </div>
+          <div class="card bg-base-100 shadow-xl border border-base-200">
+            <div class="card-body">
+              <IconBox icon={Globe02Icon} client:load />
+              <h3 class="card-title text-secondary">Tenant App</h3>
+              <p class="text-sm text-base-content/70">
+                React 19 SPA for workspace members — sign-in, signup, team management,
+                invitations, account profile, and i18n support with Lingui.
+              </p>
+            </div>
+          </div>
+          <div class="card bg-base-100 shadow-xl border border-base-200">
+            <div class="card-body">
+              <IconBox icon={Shield01Icon} client:load />
+              <h3 class="card-title text-secondary">Platform Admin</h3>
+              <p class="text-sm text-base-content/70">
+                Internal operator console — global user/org management, subscription monitoring,
+                plan catalog CRUD, and platform-wide metrics dashboard.
+              </p>
+            </div>
+          </div>
+          <div class="card bg-base-100 shadow-xl border border-base-200">
+            <div class="card-body">
+              <IconBox icon={RocketIcon} client:load />
+              <h3 class="card-title text-accent">Landing Kit</h3>
+              <p class="text-sm text-base-content/70">
+                The Astro landing kit you're looking at right now — optimized for performance,
+                SEO, and developer experience with Tailwind CSS and DaisyUI.
               </p>
             </div>
           </div>

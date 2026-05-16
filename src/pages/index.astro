@@ -89,6 +89,93 @@ import {
       </section>
     </AnimatedSection>
 
+    <!-- Included UI Applications -->
+    <AnimatedSection client:load delay={0.2}>
+      <section class="py-20">
+        <h2 class="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          Two Production React SPAs
+        </h2>
+        <p class="text-center text-base-content/60 mb-12 text-lg">
+          Ship with tenant-facing and platform-admin frontends — React 19, Mantine UI, and Feature-Sliced Design
+        </p>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="card bg-base-100 border border-base-300 shadow-lg hover:shadow-xl transition-shadow">
+            <div class="card-body">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="p-3 bg-primary/10 rounded-xl">
+                  <Globe02Icon className="w-8 h-8 text-primary" />
+                </div>
+                <h3 class="text-2xl font-bold text-primary">Tenant App</h3>
+              </div>
+              <p class="text-base-content/70 mb-6">
+                The workspace interface for your customers. Scoped to a single tenant with dedicated session management.
+              </p>
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-center gap-2 text-sm">
+                  <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                  <span>Sign-in with tenant discovery & self-service signup</span>
+                </li>
+                <li class="flex items-center gap-2 text-sm">
+                  <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                  <span>Team management & invitation workflows</span>
+                </li>
+                <li class="flex items-center gap-2 text-sm">
+                  <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                  <span>My Account — profile, password, and roles</span>
+                </li>
+                <li class="flex items-center gap-2 text-sm">
+                  <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                  <span>Lingui i18n support & Dark/Light themes</span>
+                </li>
+              </ul>
+              <div class="card-actions justify-start">
+                <span class="badge badge-outline">React 19</span>
+                <span class="badge badge-outline">Mantine 8</span>
+                <span class="badge badge-outline">TanStack Router</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card bg-base-100 border border-base-300 shadow-lg hover:shadow-xl transition-shadow">
+            <div class="card-body">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="p-3 bg-secondary/10 rounded-xl">
+                  <Shield01Icon className="w-8 h-8 text-secondary" />
+                </div>
+                <h3 class="text-2xl font-bold text-secondary">Platform Admin</h3>
+              </div>
+              <p class="text-base-content/70 mb-6">
+                Internal operator console for platform-wide administration. Manage the entire SaaS ecosystem.
+              </p>
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-center gap-2 text-sm">
+                  <div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+                  <span>Dashboard with real-time metrics & count cards</span>
+                </li>
+                <li class="flex items-center gap-2 text-sm">
+                  <div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+                  <span>Global User & Organization management</span>
+                </li>
+                <li class="flex items-center gap-2 text-sm">
+                  <div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+                  <span>Subscription monitoring & Plan catalog CRUD</span>
+                </li>
+                <li class="flex items-center gap-2 text-sm">
+                  <div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+                  <span>RBAC with PLATFORM_ADMIN authority enforcement</span>
+                </li>
+              </ul>
+              <div class="card-actions justify-start">
+                <span class="badge badge-outline">React 19</span>
+                <span class="badge badge-outline">mantine-datatable</span>
+                <span class="badge badge-outline">TanStack Query</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </AnimatedSection>
+
     <!-- Business benefits -->
     <AnimatedSection client:load delay={0.2}>
       <section class="py-20 bg-gradient-to-br from-base-200 to-base-100 rounded-3xl">
