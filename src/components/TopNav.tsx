@@ -19,7 +19,6 @@ export function TopNav() {
       <div className="bg-warning/15 border-b border-warning/30">
         <div className="container mx-auto px-4 py-2 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3 text-sm">
-            <span className="badge badge-warning badge-sm">Demo</span>
             <span className="text-base-content/70">
               You are viewing the IQ Key Value platform demo landing site.
             </span>
