@@ -12,6 +12,12 @@ import {
   Shield01Icon,
   DollarSquareIcon,
   Settings01Icon,
+  Book01Icon,
+  Activity03Icon,
+  Database01Icon,
+  UserIcon,
+  MessageIcon,
+  RefreshIcon,
 } from "@hugeicons/core-free-icons";
 ---
 
@@ -19,36 +25,43 @@ import {
   <!-- Hero -->
   <AnimatedHero client:load />
 
-  <!-- Three core services -->
+  <!-- Four core services -->
   <div class="container mx-auto px-4">
     <AnimatedSection client:load>
       <section class="py-20">
         <h2 class="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-          Three Production-Ready Services
+          Four Production-Ready Services
         </h2>
         <p class="text-center text-base-content/60 mb-12 text-lg">
-          Each service ships with its own Helm chart, CI/CD pipeline, and PostgreSQL schema
+          Each service ships with its own Helm chart, CI/CD pipeline, and dedicated database
         </p>
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <AnimatedCard
             icon={SecurityLockIcon}
             title="IAM Service"
-            description="Full identity lifecycle — signup, JWT RS256 auth, multi-tenant membership, invitation flows, brute-force protection, and token revocation."
+            description="Full identity lifecycle — signup, JWT RS256 auth, multi-tenant membership, token exchange, avatar uploads, announcements, and in-app notifications."
             delay={0.1}
             client:load
           />
           <AnimatedCard
             icon={Globe02Icon}
             title="Gateway Service"
-            description="Reactive Spring Cloud Gateway — JWT validation via JWKS, header sanitization, tenant context propagation, correlation IDs, and security response headers."
+            description="Reactive Spring Cloud Gateway — JWT validation via JWKS, header sanitization, audit context propagation, per-tenant metrics, and Swagger aggregation."
             delay={0.2}
             client:load
           />
           <AnimatedCard
             icon={CreditCardIcon}
             title="Billing Service"
-            description="Gateway-agnostic payment abstraction — Stripe integration, per-tenant customer provisioning, subscription lifecycle, idempotent webhook processing."
+            description="Gateway-agnostic payment abstraction — Stripe integration, per-tenant customer provisioning, subscription lifecycle, refunds API, and Customer Portal sessions."
             delay={0.3}
+            client:load
+          />
+          <AnimatedCard
+            icon={Book01Icon}
+            title="Audit Service"
+            description="Centralized event-driven audit trail — passive RabbitMQ consumption, SPI-based extensibility, JSONB metadata, and PLATFORM_ADMIN search API."
+            delay={0.4}
             client:load
           />
         </div>
@@ -90,6 +103,68 @@ import {
       </section>
     </AnimatedSection>
 
+    <!-- New v0.2 Features -->
+    <AnimatedSection client:load delay={0.15}>
+      <section class="py-20">
+        <h2 class="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+          v0.2: Administration & Self-Service
+        </h2>
+        <p class="text-center text-base-content/60 mb-12 text-lg">
+          Complete platform management, tenant self-service, and centralized observability
+        </p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatedCard
+            icon={Activity03Icon}
+            title="Centralized Audit Trail"
+            description="Passive event consumption from RabbitMQ, SPI-based extensibility, PLATFORM_ADMIN search API with JSONB metadata."
+            delay={0.1}
+            size={20}
+            client:load
+          />
+          <AnimatedCard
+            icon={MessageIcon}
+            title="Global Announcements"
+            description="Multi-lingual announcements with async fan-out, real-time WebSocket push, and delivery tracking."
+            delay={0.2}
+            size={20}
+            client:load
+          />
+          <AnimatedCard
+            icon={Shield01Icon}
+            title="In-App Notifications"
+            description="Persistent notifications with unread badges, mark-as-read, dismiss, and real-time WebSocket delivery."
+            delay={0.3}
+            size={20}
+            client:load
+          />
+          <AnimatedCard
+            icon={RefreshIcon}
+            title="Token Exchange"
+            description="Seamless tenant switching without re-authentication — POST /auth/exchange for new tenant-scoped tokens."
+            delay={0.4}
+            size={20}
+            client:load
+          />
+          <AnimatedCard
+            icon={UserIcon}
+            title="Avatar Uploads"
+            description="Two-phase presigned S3/MinIO flow, auto-cleanup old avatars, tenant-isolated storage."
+            delay={0.5}
+            size={20}
+            client:load
+          />
+          <AnimatedCard
+            icon={Database01Icon}
+            title="Refunds API"
+            description="Full refund management for tenants, PLATFORM_ADMIN global overview, Stripe integration."
+            delay={0.6}
+            size={20}
+            client:load
+          />
+        </div>
+      </section>
+    </AnimatedSection>
+
     <!-- Included UI Applications -->
     <AnimatedSection client:load delay={0.2}>
       <section class="py-20">
@@ -122,7 +197,11 @@ import {
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>My Account — profile, password, and roles</span>
+                  <span>Billing self-service & Stripe Customer Portal</span>
+                </li>
+                <li class="flex items-center gap-2 text-sm">
+                  <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                  <span>In-app notifications & announcements</span>
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
@@ -159,11 +238,15 @@ import {
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
-                  <span>Subscription monitoring & Plan catalog CRUD</span>
+                  <span>Subscription monitoring & Refunds overview</span>
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
-                  <span>RBAC with PLATFORM_ADMIN authority enforcement</span>
+                  <span>Global audit logs & announcements management</span>
+                </li>
+                <li class="flex items-center gap-2 text-sm">
+                  <div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+                  <span>Plan catalog CRUD & RBAC enforcement</span>
                 </li>
               </ul>
               <div class="card-actions justify-start">
