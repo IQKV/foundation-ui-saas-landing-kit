@@ -122,7 +122,7 @@ export function AnimatedHero() {
                 <div className="text-center">
                   <span className="block text-4xl mb-2">🏗️</span>
                   <span className="text-sm font-semibold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                    v0.2 Ready
+                    Start Strong. Scale Faster.
                   </span>
                 </div>
               </motion.div>
