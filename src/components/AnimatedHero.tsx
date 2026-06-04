@@ -37,6 +37,7 @@ export function AnimatedHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
+            /**
               <motion.div
                 className="inline-block mb-6"
                 initial={{ scale: 0.8, opacity: 0 }}
@@ -44,9 +45,10 @@ export function AnimatedHero() {
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
                 <span className="badge badge-lg badge-primary gap-2 px-4 py-3">
-                  ✅ v0.2 Completed · Admin & Self-Service
+                 Badge Content
                 </span>
               </motion.div>
+              */
 
               <motion.h1
                 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent"
