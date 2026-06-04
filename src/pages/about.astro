@@ -13,6 +13,7 @@ import {
   Shield01Icon,
   Settings01Icon,
   GithubIcon,
+  Activity03Icon,
 } from "@hugeicons/core-free-icons";
 ---
 
@@ -21,8 +22,8 @@ import {
     <div class="text-center mb-12">
       <h1 class="text-4xl font-bold mb-4">About IQ Key Value</h1>
       <p class="text-lg max-w-2xl mx-auto text-base-content/70">
-        Open source hybrid tenancy SaaS foundation. Production-ready IAM, Gateway, and Billing
-        microservices on Java 25 + Spring Boot 4 — deploy as multi-tenant B2B or single-tenant
+        Open source hybrid tenancy SaaS foundation. Production-ready IAM, Gateway, Billing,
+        and Audit microservices on Java 25 + Spring Boot 4 — deploy as multi-tenant B2B or single-tenant
         B2C from the same codebase.
       </p>
     </div>
@@ -71,7 +72,17 @@ import {
               <h3 class="card-title text-primary">Billing Service</h3>
               <p class="text-sm text-base-content/70">
                 Gateway-agnostic payment abstraction — Stripe integration, per-tenant customer
-                provisioning, subscription lifecycle, idempotent webhook processing.
+                provisioning, subscription lifecycle, refunds API, Stripe Customer Portal sessions.
+              </p>
+            </div>
+          </div>
+          <div class="card bg-base-100 shadow-xl border border-base-200">
+            <div class="card-body">
+              <IconBox icon={Activity03Icon} client:load />
+              <h3 class="card-title text-primary">Audit Service</h3>
+              <p class="text-sm text-base-content/70">
+                Centralized event-driven audit trail — passive RabbitMQ consumption, SPI-based
+                extensibility, JSONB metadata, and PLATFORM_ADMIN search API.
               </p>
             </div>
           </div>
@@ -81,7 +92,7 @@ import {
               <h3 class="card-title text-secondary">Tenant App</h3>
               <p class="text-sm text-base-content/70">
                 React 19 SPA for workspace members — sign-in, signup, team management,
-                invitations, account profile, and i18n support with Lingui.
+                invitations, billing self-service, in-app notifications, and i18n support with Lingui.
               </p>
             </div>
           </div>
@@ -90,8 +101,8 @@ import {
               <IconBox icon={Shield01Icon} client:load />
               <h3 class="card-title text-secondary">Platform Admin</h3>
               <p class="text-sm text-base-content/70">
-                Internal operator console — global user/org management, subscription monitoring,
-                plan catalog CRUD, and platform-wide metrics dashboard.
+                Internal operator console — global user/org management, subscription and refund
+                monitoring, announcements, audit log browser, and plan catalog CRUD.
               </p>
             </div>
           </div>
@@ -177,8 +188,8 @@ import {
               <IconBox icon={RocketIcon} size={20} client:load />
               <h3 class="card-title">Fast Time to Market</h3>
               <p class="text-sm text-base-content/70">
-                IAM, Gateway, and Billing are done. Deploy with Helm and start building
-                your vertical-specific features immediately.
+                IAM, Gateway, Billing, and Audit are production-ready. Deploy with Helm and start
+                building your vertical-specific features immediately.
               </p>
             </div>
           </div>

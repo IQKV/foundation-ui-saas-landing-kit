@@ -11,6 +11,7 @@ import {
   BookOpen01Icon,
   GithubIcon,
   Settings01Icon,
+  Activity03Icon,
 } from "@hugeicons/core-free-icons";
 ---
 
@@ -43,7 +44,7 @@ import {
                 className="text-primary flex-shrink-0 mt-0.5"
                 client:load
               />
-              <span>All 3 microservices included (IAM, Gateway, Billing)</span>
+              <span>All 4 microservices included (IAM, Gateway, Billing, Audit)</span>
             </li>
             <li class="flex items-start gap-2">
               <Icon
@@ -125,6 +126,12 @@ import {
           <div class="card-body items-center text-center">
             <IconBox icon={CreditCardIcon} client:load />
             <p class="font-medium">Billing — Stripe & Subscriptions</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body items-center text-center">
+            <IconBox icon={Activity03Icon} client:load />
+            <p class="font-medium">Audit — Centralized Event Trail</p>
           </div>
         </div>
         <div class="card bg-base-100 shadow-xl">
