@@ -16,19 +16,6 @@ export function TopNav() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="bg-warning/15 border-b border-warning/30">
-        <div className="container mx-auto px-4 py-2 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3 text-sm">
-            <span className="text-base-content/70">
-              You are viewing the IQ Key Value platform demo landing site.
-            </span>
-          </div>
-          <a href={APP_URL} className="btn btn-xs btn-warning">
-            Open App
-          </a>
-        </div>
-      </div>
-
       <div className="navbar bg-base-100/80 backdrop-blur-lg border-b border-base-300/50">
         <div className="navbar-start">
           <div className="dropdown">
