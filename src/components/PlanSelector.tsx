@@ -48,9 +48,7 @@ export function PlanSelector({ plans }: PlanSelectorProps) {
             type="button"
             onClick={() => setBillingPeriod("MONTHLY")}
             className={`px-4 py-2 rounded-md font-medium ${
-              billingPeriod === "MONTHLY"
-                ? "bg-primary text-primary-content"
-                : ""
+              billingPeriod === "MONTHLY" ? "bg-primary text-primary-content" : ""
             }`}
           >
             Monthly
@@ -59,9 +57,7 @@ export function PlanSelector({ plans }: PlanSelectorProps) {
             type="button"
             onClick={() => setBillingPeriod("ANNUAL")}
             className={`px-4 py-2 rounded-md font-medium ${
-              billingPeriod === "ANNUAL"
-                ? "bg-primary text-primary-content"
-                : ""
+              billingPeriod === "ANNUAL" ? "bg-primary text-primary-content" : ""
             }`}
           >
             Annual
@@ -74,13 +70,9 @@ export function PlanSelector({ plans }: PlanSelectorProps) {
           <div key={plan.planCode} className="card bg-base-100 shadow-xl">
             <div className="card-body">
               <div className="text-center mb-6">
-                <h3 className="card-title justify-center text-2xl">
-                  {plan.displayName}
-                </h3>
+                <h3 className="card-title justify-center text-2xl">{plan.displayName}</h3>
                 {plan.description && (
-                  <p className="text-sm text-base-content/70 mt-2">
-                    {plan.description}
-                  </p>
+                  <p className="text-sm text-base-content/70 mt-2">{plan.description}</p>
                 )}
                 <div className="mb-2 mt-4">
                   <span className="text-5xl font-bold">
@@ -100,10 +92,7 @@ export function PlanSelector({ plans }: PlanSelectorProps) {
                     client:load
                   />
                   <span>
-                    {plan.features.maxUsers === 0
-                      ? "Unlimited"
-                      : plan.features.maxUsers}{" "}
-                    Users
+                    {plan.features.maxUsers === 0 ? "Unlimited" : plan.features.maxUsers} Users
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
@@ -114,9 +103,7 @@ export function PlanSelector({ plans }: PlanSelectorProps) {
                     client:load
                   />
                   <span>
-                    {plan.features.maxProjects === 0
-                      ? "Unlimited"
-                      : plan.features.maxProjects}{" "}
+                    {plan.features.maxProjects === 0 ? "Unlimited" : plan.features.maxProjects}{" "}
                     Projects
                   </span>
                 </li>
@@ -127,10 +114,7 @@ export function PlanSelector({ plans }: PlanSelectorProps) {
                     className="text-primary flex-shrink-0 mt-0.5"
                     client:load
                   />
-                  <span>
-                    {plan.features.prioritySupport ? "Priority" : "Community"}{" "}
-                    Support
-                  </span>
+                  <span>{plan.features.prioritySupport ? "Priority" : "Community"} Support</span>
                 </li>
               </ul>
               <div className="card-actions">
