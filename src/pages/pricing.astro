@@ -1,9 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { Icon } from "@/components/Icon";
 import { IconBox } from "@/components/IconBox";
 import {
-  Tick02Icon,
   SecurityLockIcon,
   CreditCardIcon,
   Globe02Icon,
@@ -12,6 +10,7 @@ import {
   Settings01Icon,
   Activity03Icon,
 } from "@hugeicons/core-free-icons";
+import { PlanSelector } from "@/components/PlanSelector";
 
 interface PlanFeatures {
   prioritySupport: boolean;
@@ -49,11 +48,41 @@ const fallbackPlans: PublicPlanEntry[] = [
     active: true,
   },
   {
+    planCode: "basic-yearly",
+    displayName: "Basic Yearly",
+    description: "A basic plan for small teams with limited support, billed yearly at a 20% discount!",
+    billingPeriod: "ANNUAL",
+    priceMinor: 4800,
+    currency: "USD",
+    features: {
+      prioritySupport: false,
+      maxUsers: 5,
+      maxProjects: 3,
+    },
+    scope: "TENANT",
+    active: true,
+  },
+  {
     planCode: "pro-monthly",
     displayName: "Pro Monthly",
     description: "A pro plan for larger teams with priority support.",
     billingPeriod: "MONTHLY",
     priceMinor: 1500,
+    currency: "USD",
+    features: {
+      prioritySupport: true,
+      maxUsers: 50,
+      maxProjects: 0,
+    },
+    scope: "TENANT",
+    active: true,
+  },
+  {
+    planCode: "pro-yearly",
+    displayName: "Pro Yearly",
+    description: "A pro plan for larger teams with priority support, billed yearly at a 20% discount!",
+    billingPeriod: "ANNUAL",
+    priceMinor: 14400,
     currency: "USD",
     features: {
       prioritySupport: true,
@@ -79,20 +108,6 @@ try {
 } catch (e) {
   console.warn("Failed to fetch plans from API, using fallback", e);
 }
-
-// Helper to format price
-function formatPrice(priceMinor: number, currency: string) {
-  const major = priceMinor / 100;
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: currency,
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2,
-  }).format(major);
-}
-
-// Group plans by billing period
-const monthlyPlans = plans.filter((p) => p.billingPeriod === "MONTHLY");
 ---
 
 <BaseLayout title="Pricing - IQ Key Value">
@@ -105,75 +120,8 @@ const monthlyPlans = plans.filter((p) => p.billingPeriod === "MONTHLY");
       </p>
     </div>
 
-    <!-- Toggle for Monthly/Annual -->
-    <div class="flex justify-center mb-12">
-      <div class="inline-flex bg-base-100 p-1 rounded-lg shadow-lg">
-        <button class="px-4 py-2 rounded-md bg-primary text-primary-content font-medium">
-          Monthly
-        </button>
-        <button class="px-4 py-2 rounded-md font-medium">Annual</button>
-      </div>
-    </div>
-
-    <!-- Plan Cards -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
-      {monthlyPlans.map((plan) => (
-        <div class="card bg-base-100 shadow-xl">
-          <div class="card-body">
-            <div class="text-center mb-6">
-              <h3 class="card-title justify-center text-2xl">{plan.displayName}</h3>
-              {plan.description && (
-                <p class="text-sm text-base-content/70 mt-2">{plan.description}</p>
-              )}
-              <div class="mb-2 mt-4">
-                <span class="text-5xl font-bold">{formatPrice(plan.priceMinor, plan.currency)}</span>
-                <span class="opacity-70">/month</span>
-              </div>
-            </div>
-            <ul class="space-y-3 mb-8">
-              <li class="flex items-start gap-2">
-                <Icon
-                  icon={Tick02Icon}
-                  size={20}
-                  className="text-primary flex-shrink-0 mt-0.5"
-                  client:load
-                />
-                <span>
-                  {plan.features.maxUsers === 0 ? "Unlimited" : plan.features.maxUsers} Users
-                </span>
-              </li>
-              <li class="flex items-start gap-2">
-                <Icon
-                  icon={Tick02Icon}
-                  size={20}
-                  className="text-primary flex-shrink-0 mt-0.5"
-                  client:load
-                />
-                <span>
-                  {plan.features.maxProjects === 0 ? "Unlimited" : plan.features.maxProjects} Projects
-                </span>
-              </li>
-              <li class="flex items-start gap-2">
-                <Icon
-                  icon={Tick02Icon}
-                  size={20}
-                  className="text-primary flex-shrink-0 mt-0.5"
-                  client:load
-                />
-                <span>
-                  {plan.features.prioritySupport ? "Priority" : "Community"} Support
-                </span>
-              </li>
-            </ul>
-            <div class="card-actions">
-              <a href={import.meta.env.PUBLIC_APP_URL || "/"} class="btn btn-primary btn-block">
-                Get Started
-              </a>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
+    <!-- Client-side plan selector -->
+    <PlanSelector client:load plans={plans} />
 
     <section class="max-w-4xl mx-auto">
       <h2 class="text-2xl font-semibold mb-8 text-center">What's Included</h2>
