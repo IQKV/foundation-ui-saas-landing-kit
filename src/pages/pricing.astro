@@ -9,7 +9,6 @@ import {
   Globe02Icon,
   Database01Icon,
   BookOpen01Icon,
-  GithubIcon,
   Settings01Icon,
   Activity03Icon,
 } from "@hugeicons/core-free-icons";
@@ -94,7 +93,6 @@ function formatPrice(priceMinor: number, currency: string) {
 
 // Group plans by billing period
 const monthlyPlans = plans.filter((p) => p.billingPeriod === "MONTHLY");
-const annualPlans = plans.filter((p) => p.billingPeriod === "ANNUAL");
 ---
 
 <BaseLayout title="Pricing - IQ Key Value">
@@ -120,7 +118,7 @@ const annualPlans = plans.filter((p) => p.billingPeriod === "ANNUAL");
     <!-- Plan Cards -->
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
       {monthlyPlans.map((plan) => (
-        <div key={plan.planCode} class="card bg-base-100 shadow-xl">
+        <div class="card bg-base-100 shadow-xl">
           <div class="card-body">
             <div class="text-center mb-6">
               <h3 class="card-title justify-center text-2xl">{plan.displayName}</h3>
