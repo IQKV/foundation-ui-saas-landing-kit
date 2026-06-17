@@ -13,6 +13,88 @@ import {
   Settings01Icon,
   Activity03Icon,
 } from "@hugeicons/core-free-icons";
+
+interface PlanFeatures {
+  prioritySupport: boolean;
+  maxUsers: number;
+  maxProjects: number;
+}
+
+interface PublicPlanEntry {
+  planCode: string;
+  displayName: string;
+  description?: string;
+  billingPeriod: "MONTHLY" | "ANNUAL";
+  priceMinor: number;
+  currency: string;
+  features: PlanFeatures;
+  scope: string;
+  active: boolean;
+}
+
+// Fallback data
+const fallbackPlans: PublicPlanEntry[] = [
+  {
+    planCode: "basic-monthly",
+    displayName: "Basic Monthly",
+    description: "A basic plan for small teams with limited support.",
+    billingPeriod: "MONTHLY",
+    priceMinor: 500,
+    currency: "USD",
+    features: {
+      prioritySupport: false,
+      maxUsers: 5,
+      maxProjects: 3,
+    },
+    scope: "TENANT",
+    active: true,
+  },
+  {
+    planCode: "pro-monthly",
+    displayName: "Pro Monthly",
+    description: "A pro plan for larger teams with priority support.",
+    billingPeriod: "MONTHLY",
+    priceMinor: 1500,
+    currency: "USD",
+    features: {
+      prioritySupport: true,
+      maxUsers: 50,
+      maxProjects: 0,
+    },
+    scope: "TENANT",
+    active: true,
+  },
+];
+
+let plans: PublicPlanEntry[] = fallbackPlans;
+
+// Try to fetch plans from API at build time
+try {
+  const apiUrl = import.meta.env.PUBLIC_API_URL;
+  if (apiUrl) {
+    const response = await fetch(`${apiUrl}/v1/billing/internal/plans/public`);
+    if (response.ok) {
+      plans = await response.json();
+    }
+  }
+} catch (e) {
+  console.warn("Failed to fetch plans from API, using fallback", e);
+}
+
+// Helper to format price
+function formatPrice(priceMinor: number, currency: string) {
+  const major = priceMinor / 100;
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: currency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  }).format(major);
+}
+
+// Group plans by billing period
+const monthlyPlans = plans.filter((p) => p.billingPeriod === "MONTHLY");
+const annualPlans = plans.filter((p) => p.billingPeriod === "ANNUAL");
 ---
 
 <BaseLayout title="Pricing - IQ Key Value">
@@ -20,91 +102,79 @@ import {
     <div class="text-center mb-12">
       <h1 class="text-4xl font-bold mb-4">Simple Pricing</h1>
       <p class="text-lg max-w-2xl mx-auto">
-        Open source and free to use. Build your next SaaS product without
-        licensing costs.
+        Choose the plan that fits your team's needs. All plans include our
+        complete microservices platform.
       </p>
     </div>
 
-    <div class="max-w-md mx-auto mb-16">
-      <div class="card bg-base-100 shadow-xl border-2 border-primary">
-        <div class="card-body">
-          <div class="text-center mb-6">
-            <h3 class="card-title justify-center text-2xl">Open Source</h3>
-            <div class="mb-2">
-              <span class="text-5xl font-bold">$0</span>
-              <span class="opacity-70">/forever</span>
+    <!-- Toggle for Monthly/Annual -->
+    <div class="flex justify-center mb-12">
+      <div class="inline-flex bg-base-100 p-1 rounded-lg shadow-lg">
+        <button class="px-4 py-2 rounded-md bg-primary text-primary-content font-medium">
+          Monthly
+        </button>
+        <button class="px-4 py-2 rounded-md font-medium">Annual</button>
+      </div>
+    </div>
+
+    <!-- Plan Cards -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+      {monthlyPlans.map((plan) => (
+        <div key={plan.planCode} class="card bg-base-100 shadow-xl">
+          <div class="card-body">
+            <div class="text-center mb-6">
+              <h3 class="card-title justify-center text-2xl">{plan.displayName}</h3>
+              {plan.description && (
+                <p class="text-sm text-base-content/70 mt-2">{plan.description}</p>
+              )}
+              <div class="mb-2 mt-4">
+                <span class="text-5xl font-bold">{formatPrice(plan.priceMinor, plan.currency)}</span>
+                <span class="opacity-70">/month</span>
+              </div>
             </div>
-            <p class="text-sm">Apache 2.0 License</p>
-          </div>
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>All 4 microservices included (IAM, Gateway, Billing, Audit)</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Production-ready code</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Complete documentation</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Community support via GitHub</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>No usage limits or restrictions</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <Icon
-                icon={Tick02Icon}
-                size={20}
-                className="text-primary flex-shrink-0 mt-0.5"
-                client:load
-              />
-              <span>Commercial use allowed</span>
-            </li>
-          </ul>
-          <div class="card-actions">
-            <a
-              href="https://github.com/IQKV/microservices-platform"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-primary btn-block gap-2"
-            >
-              <Icon icon={GithubIcon} size={20} client:load />
-              Get Started
-            </a>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-start gap-2">
+                <Icon
+                  icon={Tick02Icon}
+                  size={20}
+                  className="text-primary flex-shrink-0 mt-0.5"
+                  client:load
+                />
+                <span>
+                  {plan.features.maxUsers === 0 ? "Unlimited" : plan.features.maxUsers} Users
+                </span>
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon
+                  icon={Tick02Icon}
+                  size={20}
+                  className="text-primary flex-shrink-0 mt-0.5"
+                  client:load
+                />
+                <span>
+                  {plan.features.maxProjects === 0 ? "Unlimited" : plan.features.maxProjects} Projects
+                </span>
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon
+                  icon={Tick02Icon}
+                  size={20}
+                  className="text-primary flex-shrink-0 mt-0.5"
+                  client:load
+                />
+                <span>
+                  {plan.features.prioritySupport ? "Priority" : "Community"} Support
+                </span>
+              </li>
+            </ul>
+            <div class="card-actions">
+              <a href={import.meta.env.PUBLIC_APP_URL || "/"} class="btn btn-primary btn-block">
+                Get Started
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      ))}
     </div>
 
     <section class="max-w-4xl mx-auto">
@@ -161,9 +231,8 @@ import {
           Questions about pricing?
         </h2>
         <p>
-          IQ Key Value is completely free and open source under the Apache 2.0
-          license. Use it for personal projects, commercial products, or
-          anything in between.
+          Need a custom plan or have questions about what's included? Reach out
+          to our team.
         </p>
         <a
           href="https://github.com/IQKV/microservices-platform/discussions"
