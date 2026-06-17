@@ -89,7 +89,6 @@ export function PlanSelector({ plans }: PlanSelectorProps) {
                     icon={Tick02Icon}
                     size={20}
                     className="text-primary flex-shrink-0 mt-0.5"
-                    client:load
                   />
                   <span>
                     {plan.features.maxUsers === 0 ? "Unlimited" : plan.features.maxUsers} Users
@@ -100,7 +99,6 @@ export function PlanSelector({ plans }: PlanSelectorProps) {
                     icon={Tick02Icon}
                     size={20}
                     className="text-primary flex-shrink-0 mt-0.5"
-                    client:load
                   />
                   <span>
                     {plan.features.maxProjects === 0 ? "Unlimited" : plan.features.maxProjects}{" "}
@@ -112,7 +110,6 @@ export function PlanSelector({ plans }: PlanSelectorProps) {
                     icon={Tick02Icon}
                     size={20}
                     className="text-primary flex-shrink-0 mt-0.5"
-                    client:load
                   />
                   <span>{plan.features.prioritySupport ? "Priority" : "Community"} Support</span>
                 </li>
