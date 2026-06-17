@@ -85,32 +85,20 @@ export function PlanSelector({ plans }: PlanSelectorProps) {
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-2">
-                  <Icon
-                    icon={Tick02Icon}
-                    size={20}
-                    className="text-primary flex-shrink-0 mt-0.5"
-                  />
+                  <Icon icon={Tick02Icon} size={20} className="text-primary flex-shrink-0 mt-0.5" />
                   <span>
                     {plan.features.maxUsers === 0 ? "Unlimited" : plan.features.maxUsers} Users
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Icon
-                    icon={Tick02Icon}
-                    size={20}
-                    className="text-primary flex-shrink-0 mt-0.5"
-                  />
+                  <Icon icon={Tick02Icon} size={20} className="text-primary flex-shrink-0 mt-0.5" />
                   <span>
                     {plan.features.maxProjects === 0 ? "Unlimited" : plan.features.maxProjects}{" "}
                     Projects
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Icon
-                    icon={Tick02Icon}
-                    size={20}
-                    className="text-primary flex-shrink-0 mt-0.5"
-                  />
+                  <Icon icon={Tick02Icon} size={20} className="text-primary flex-shrink-0 mt-0.5" />
                   <span>{plan.features.prioritySupport ? "Priority" : "Community"} Support</span>
                 </li>
               </ul>
