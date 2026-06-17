@@ -201,7 +201,6 @@ Create `.env` file:
 
 ```bash
 PUBLIC_API_URL=https://api.example.com
-PUBLIC_AUTH_URL=https://auth.example.com
 ```
 
 Access in Astro components:

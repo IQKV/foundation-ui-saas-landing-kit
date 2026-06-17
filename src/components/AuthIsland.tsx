@@ -21,7 +21,7 @@ import { decodeJwt, isTenantSession, isTokenFresh } from "@/lib/jwt";
 const REFRESH_TOKEN_KEY = "iqkv_refresh_token";
 const TENANT_KEY_KEY = "iqkv_tenant_key";
 
-const AUTH_URL = import.meta.env.PUBLIC_AUTH_URL ?? "https://auth.iqkv.site";
+const AUTH_URL = import.meta.env.PUBLIC_API_URL ?? "https://api.iqkv.site/api";
 
 export function AuthIsland() {
   const setAuth = useAuthStore((s) => s.setAuth);
