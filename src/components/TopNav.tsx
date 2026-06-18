@@ -48,6 +48,9 @@ export function TopNav() {
               <li>
                 <a href="/about">About</a>
               </li>
+              <li>
+                <a href="https://docs.iqkv.site">User Documentation</a>
+              </li>
             </ul>
           </div>
           <div className="flex items-center gap-2">
