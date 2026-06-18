@@ -2,10 +2,17 @@ import { useState } from "react";
 import { Icon } from "./Icon";
 import { Tick02Icon } from "@hugeicons/core-free-icons";
 
+interface PlanFeature {
+  code: string;
+  title: string;
+  value: string;
+  description?: string;
+}
+
 interface PlanFeatures {
-  prioritySupport: boolean;
   maxUsers: number;
   maxProjects: number;
+  features: Record<string, PlanFeature>;
 }
 
 interface PublicPlanEntry {
@@ -25,6 +32,7 @@ interface PlanSelectorProps {
 }
 
 function formatPrice(priceMinor: number, currency: string) {
+  if (priceMinor === 0) return "Free";
   const major = priceMinor / 100;
   return new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -32,6 +40,11 @@ function formatPrice(priceMinor: number, currency: string) {
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
   }).format(major);
+}
+
+function hasPrioritySupport(features: PlanFeatures["features"]): boolean {
+  const entry = features["priority_support"];
+  return entry !== undefined && entry.value.toLowerCase() === "true";
 }
 
 export function PlanSelector({ plans }: PlanSelectorProps) {
@@ -99,7 +112,9 @@ export function PlanSelector({ plans }: PlanSelectorProps) {
                 </li>
                 <li className="flex items-start gap-2">
                   <Icon icon={Tick02Icon} size={20} className="text-primary flex-shrink-0 mt-0.5" />
-                  <span>{plan.features.prioritySupport ? "Priority" : "Community"} Support</span>
+                  <span>
+                    {hasPrioritySupport(plan.features.features) ? "Priority" : "Community"} Support
+                  </span>
                 </li>
               </ul>
               <div className="card-actions">

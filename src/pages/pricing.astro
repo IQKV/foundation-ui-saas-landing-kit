@@ -12,10 +12,17 @@ import {
 } from "@hugeicons/core-free-icons";
 import { PlanSelector } from "@/components/PlanSelector";
 
+interface PlanFeature {
+  code: string;
+  title: string;
+  value: string;
+  description?: string;
+}
+
 interface PlanFeatures {
-  prioritySupport: boolean;
   maxUsers: number;
   maxProjects: number;
+  features: Record<string, PlanFeature>;
 }
 
 interface PublicPlanEntry {
@@ -30,64 +37,19 @@ interface PublicPlanEntry {
   active: boolean;
 }
 
-// Fallback data
+// Fallback shown when the API is unreachable at build time
 const fallbackPlans: PublicPlanEntry[] = [
   {
-    planCode: "basic-monthly",
-    displayName: "Basic Monthly",
-    description: "A basic plan for small teams with limited support.",
+    planCode: "free",
+    displayName: "Free",
+    description: "Get started for free. Upgrade anytime.",
     billingPeriod: "MONTHLY",
-    priceMinor: 500,
+    priceMinor: 0,
     currency: "USD",
     features: {
-      prioritySupport: false,
-      maxUsers: 5,
-      maxProjects: 3,
-    },
-    scope: "TENANT",
-    active: true,
-  },
-  {
-    planCode: "basic-yearly",
-    displayName: "Basic Yearly",
-    description: "A basic plan for small teams with limited support, billed yearly at a 20% discount!",
-    billingPeriod: "ANNUAL",
-    priceMinor: 4800,
-    currency: "USD",
-    features: {
-      prioritySupport: false,
-      maxUsers: 5,
-      maxProjects: 3,
-    },
-    scope: "TENANT",
-    active: true,
-  },
-  {
-    planCode: "pro-monthly",
-    displayName: "Pro Monthly",
-    description: "A pro plan for larger teams with priority support.",
-    billingPeriod: "MONTHLY",
-    priceMinor: 1500,
-    currency: "USD",
-    features: {
-      prioritySupport: true,
-      maxUsers: 50,
-      maxProjects: 0,
-    },
-    scope: "TENANT",
-    active: true,
-  },
-  {
-    planCode: "pro-yearly",
-    displayName: "Pro Yearly",
-    description: "A pro plan for larger teams with priority support, billed yearly at a 20% discount!",
-    billingPeriod: "ANNUAL",
-    priceMinor: 14400,
-    currency: "USD",
-    features: {
-      prioritySupport: true,
-      maxUsers: 50,
-      maxProjects: 0,
+      maxUsers: 1,
+      maxProjects: 1,
+      features: {},
     },
     scope: "TENANT",
     active: true,
