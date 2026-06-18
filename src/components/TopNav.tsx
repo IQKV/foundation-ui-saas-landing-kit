@@ -49,7 +49,7 @@ export function TopNav() {
                 <a href="/about">About</a>
               </li>
               <li>
-                <a href="https://docs.iqkv.site">User Documentation</a>
+                <a href="https://docs.iqkv.site/">User Documentation</a>
               </li>
             </ul>
           </div>
@@ -81,6 +81,11 @@ export function TopNav() {
             <li>
               <motion.a href="/about" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 About
+              </motion.a>
+            </li>
+            <li>
+              <motion.a href="https://docs.iqkv.site/" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                User Documentation
               </motion.a>
             </li>
             <li>
