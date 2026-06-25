@@ -13,6 +13,8 @@ import {
   PuzzleIcon,
   Settings01Icon,
   Book01Icon,
+  FileEditIcon,
+  UserIcon,
 } from "@hugeicons/core-free-icons";
 ---
 
@@ -118,6 +120,25 @@ import {
         client:load
       />
 
+      <!-- CMS Service -->
+      <FeatureCard
+        icon={FileEditIcon}
+        title="CMS Service"
+        description="Content management microservice for static pages, multi-language support, and hierarchical content. Tenant-isolated with event-driven publishing."
+        features={[
+          "Static page management — draft/published status, page templates",
+          "Multi-language support — locale-based content with en-US fallback",
+          "Hierarchical content structure — parent/child pages with SEO-friendly slugs",
+          "SEO metadata — title, description, Open Graph tags, canonical URLs",
+          "Tenant isolation — schema-per-tenant architecture (MyBatisSchemaInterceptor)",
+          "Event publishing — cms.page.created/updated/deleted to RabbitMQ",
+          "Public API — GET /pages and GET /pages/{slug} with locale negotiation",
+          "Platform Admin API — full CRUD for pages across any tenant",
+        ]}
+        delay={0.45}
+        client:load
+      />
+
       <!-- Hybrid Tenancy -->
       <FeatureCard
         icon={Settings01Icon}
@@ -139,7 +160,7 @@ import {
 
       <!-- Tenant App -->
       <FeatureCard
-        icon={Globe02Icon}
+        icon={UserIcon}
         title="Tenant App"
         description="The customer-facing surface of the platform. A React 19 SPA built with Mantine UI and Feature-Sliced Design."
         features={[
