@@ -86,14 +86,13 @@ import {
         features={[
           "Automatic customer provisioning on tenant.provisioned RabbitMQ event",
           "Billing settings — billing email, tax ID / VAT/GST per tenant",
-          "Stripe integration via PaymentGatewayPort Strategy pattern",
+          "Stripe and Lemon Squeezy integration via PaymentGatewayPort Strategy pattern",
           "Idempotent webhook processing — duplicate delivery is safe",
           "Subscription lifecycle events — created, cancelled, invoice.paid, payment.failed",
           "Refunds API — full or partial refunds; TENANT_OWNER and PLATFORM_ADMIN access",
           "Stripe Customer Portal sessions — self-service billing management for TENANT_OWNER",
           "Plan catalog with PLATFORM_ADMIN management endpoints",
           "Active subscription query for TENANT_OWNER and MEMBER roles",
-          "Multi-gateway ready — swap Stripe for any provider without business logic changes",
           "Grafana dashboard — MRR, churn, refund volume, payment success rates",
         ]}
         delay={0.3}
