@@ -43,7 +43,7 @@ export function AnimatedHero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                Hybrid Tenancy SaaS Foundation
+                Hybrid Tenancy & Identity Federation
               </motion.h1>
               <motion.p
                 className="text-xl md:text-2xl mb-4 text-base-content/80"
@@ -51,7 +51,7 @@ export function AnimatedHero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
               >
-                One codebase. Multi-tenant B2B or single-tenant B2C — switch with a config flag.
+                One codebase. Multi-tenant B2B or single-tenant B2C, with OAuth2/OIDC social login and tenant-scoped enterprise SSO built in.
               </motion.p>
               <motion.p
                 className="text-lg md:text-xl mb-10 text-base-content/60"
@@ -60,7 +60,7 @@ export function AnimatedHero() {
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
                 Four production-ready services: IAM, Gateway, Billing, and Audit. Two React SPAs:
-                Tenant App and Platform Admin. Kubernetes-native with Helm charts.
+                Tenant App and Platform Admin. Kubernetes-native with Helm charts and selectable Stripe or Lemon Squeezy billing.
               </motion.p>
               <motion.div
                 className="flex flex-col sm:flex-row gap-4"

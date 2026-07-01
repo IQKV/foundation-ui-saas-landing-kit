@@ -22,9 +22,9 @@ import {
     <div class="text-center mb-12">
       <h1 class="text-4xl font-bold mb-4">About IQ Key Value</h1>
       <p class="text-lg max-w-2xl mx-auto text-base-content/70">
-        Open source hybrid tenancy SaaS foundation. Production-ready IAM, Gateway, Billing,
-        and Audit microservices on Java 25 + Spring Boot 4 — deploy as multi-tenant B2B or single-tenant
-        B2C from the same codebase.
+        Open source hybrid tenancy SaaS foundation with identity federation. Production-ready IAM,
+        Gateway, Billing, and Audit microservices on Java 25 + Spring Boot 4 — deploy as multi-tenant
+        B2B or single-tenant B2C from the same codebase with OAuth2/OIDC and enterprise SSO built in.
       </p>
     </div>
 
@@ -35,7 +35,7 @@ import {
           <h2 class="card-title text-2xl">Our Mission</h2>
           <p>
             Every SaaS team should spend their time solving customer problems, not rebuilding
-            authentication systems, API gateways, and payment infrastructure from scratch.
+            authentication systems, identity federation, API gateways, and payment infrastructure from scratch.
             IQ Key Value provides the essential backend foundation — production-ready, open source,
             Apache 2.0 — so you can launch faster and scale confidently.
           </p>
@@ -51,8 +51,8 @@ import {
               <IconBox icon={SecurityLockIcon} client:load />
               <h3 class="card-title text-primary">IAM Service</h3>
               <p class="text-sm text-base-content/70">
-                Full identity lifecycle — signup, JWT RS256 auth, multi-tenant membership,
-                invitation flows, brute-force protection, token revocation, email verification.
+                Full identity lifecycle — signup, JWT RS256 auth, OAuth2/OIDC social login,
+                tenant-scoped enterprise SSO, invitation flows, brute-force protection, token revocation, email verification.
               </p>
             </div>
           </div>
@@ -91,8 +91,8 @@ import {
               <IconBox icon={Globe02Icon} client:load />
               <h3 class="card-title text-secondary">Tenant App</h3>
               <p class="text-sm text-base-content/70">
-                React 19 SPA for workspace members — sign-in, signup, team management,
-                invitations, billing self-service, in-app notifications, and i18n support with Lingui.
+                React 19 SPA for workspace members — sign-in, social login, enterprise SSO,
+                team management, invitations, billing self-service, connected accounts, and i18n support with Lingui.
               </p>
             </div>
           </div>
@@ -102,7 +102,7 @@ import {
               <h3 class="card-title text-secondary">Platform Admin</h3>
               <p class="text-sm text-base-content/70">
                 Internal operator console — global user/org management, subscription and refund
-                monitoring, announcements, audit log browser, and plan catalog CRUD.
+                monitoring, platform authority controls, OIDC identity remediation, announcements, and audit log browser.
               </p>
             </div>
           </div>
@@ -130,7 +130,8 @@ import {
             One codebase, two deployment models. Set <code class="bg-base-300 px-1 rounded text-sm">platform.rolloutMode</code> to
             choose between <strong>MULTI_TENANT</strong> (schema-per-tenant PostgreSQL isolation, each company
             gets a dedicated schema) and <strong>SINGLE_TENANT</strong> (all users in one default workspace,
-            ideal for B2C). No code changes required.
+            ideal for B2C). The same platform also carries OAuth2/OIDC social login and tenant-scoped enterprise
+            SSO. No code changes required.
           </p>
           <div class="flex flex-wrap gap-2">
             <span class="badge badge-primary">Multi-Tenant B2B</span>
@@ -198,8 +199,8 @@ import {
               <IconBox icon={Shield01Icon} size={20} client:load />
               <h3 class="card-title">Security by Default</h3>
               <p class="text-sm text-base-content/70">
-                RS256 JWT, JTI denylist, brute-force lockout, header sanitization,
-                schema-per-tenant isolation, and two-layer token revocation.
+                RS256 JWT, OAuth2/OIDC federation, Redis-backed PKCE state handling,
+                brute-force lockout, header sanitization, schema-per-tenant isolation, and two-layer token revocation.
               </p>
             </div>
           </div>

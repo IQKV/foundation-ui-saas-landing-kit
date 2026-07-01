@@ -21,7 +21,7 @@ import {
 } from "@hugeicons/core-free-icons";
 ---
 
-<BaseLayout title="IQ Key Value — Hybrid Tenancy SaaS Foundation">
+<BaseLayout title="IQ Key Value — Hybrid Tenancy & Identity Federation">
   <!-- Hero -->
   <AnimatedHero client:load />
 
@@ -39,7 +39,7 @@ import {
           <AnimatedCard
             icon={SecurityLockIcon}
             title="IAM Service"
-            description="Full identity lifecycle — signup, JWT RS256 auth, multi-tenant membership, token exchange, avatar uploads, announcements, and in-app notifications."
+            description="Full identity lifecycle — signup, JWT RS256 auth, OAuth2/OIDC social login, tenant-scoped enterprise SSO, token exchange, avatar uploads, announcements, and in-app notifications."
             delay={0.1}
             client:load
           />
@@ -75,12 +75,14 @@ import {
           <div class="card-body md:flex-row items-center gap-8">
             <div class="flex-1">
               <h2 class="text-3xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Hybrid Tenancy Model
+                Hybrid Tenancy & Identity Federation
               </h2>
               <p class="text-base-content/70 mb-4">
                 Deploy as <strong>multi-tenant B2B SaaS</strong> (schema-per-tenant PostgreSQL isolation)
-                or <strong>single-tenant B2C</strong> (all users in one default workspace) — from the
-                same codebase. Switch via a single config flag, no code changes required.
+                or <strong>single-tenant B2C</strong> (all users in one default workspace) from the
+                same codebase, while keeping <strong>OAuth2/OIDC social login</strong> and
+                <strong> tenant-scoped enterprise SSO</strong> in the same platform. Switch deployment
+                mode via a single config flag, no code changes required.
               </p>
               <div class="flex flex-wrap gap-2">
                 <span class="badge badge-primary badge-lg">Multi-Tenant B2B</span>
@@ -155,7 +157,7 @@ import {
           <AnimatedCard
             icon={Database01Icon}
             title="Refunds API"
-            description="Full refund management for tenants, PLATFORM_ADMIN global overview, Stripe integration."
+            description="Full refund management for tenants, PLATFORM_ADMIN global overview, and multi-gateway support for Stripe or Lemon Squeezy."
             delay={0.6}
             size={20}
             client:load
@@ -188,7 +190,7 @@ import {
               <ul class="space-y-3 mb-8">
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Sign-in with tenant discovery & self-service signup</span>
+                  <span>Sign-in with tenant discovery, social login, enterprise SSO, and self-service signup</span>
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
@@ -196,7 +198,7 @@ import {
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Billing self-service & Stripe Customer Portal</span>
+                  <span>Billing self-service with Stripe or Lemon Squeezy portal flows</span>
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
@@ -233,11 +235,11 @@ import {
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
-                  <span>Global User & Organization management</span>
+                  <span>Global User & Organization management with platform authority controls</span>
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
-                  <span>Subscription monitoring & Refunds overview</span>
+                  <span>Subscription monitoring, lifecycle actions, and refunds overview</span>
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
@@ -245,7 +247,7 @@ import {
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
-                  <span>Plan catalog CRUD & RBAC enforcement</span>
+                  <span>OIDC identity remediation, read-only plan catalog, and RBAC enforcement</span>
                 </li>
               </ul>
               <div class="card-actions justify-start">

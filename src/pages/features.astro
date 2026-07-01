@@ -37,7 +37,7 @@ import {
       <FeatureCard
         icon={SecurityLockIcon}
         title="IAM Service"
-        description="Full identity lifecycle for multi-tenant SaaS. Handles signup, authentication, tenant provisioning, and access control."
+        description="Full identity lifecycle for multi-tenant SaaS. Handles signup, authentication, OAuth2/OIDC federation, tenant provisioning, and access control."
         features={[
           "Self-service signup — creates user + tenant in one call",
           "Signup by invitation — time-limited (72 h), MEMBER authority by default",
@@ -49,6 +49,8 @@ import {
           "Tenant lifecycle — suspend, delete, retry provisioning, ShedLock reaper",
           "JWKS endpoint for gateway JWT validation",
           "Token exchange — tenant switching without re-authentication",
+          "OAuth2 / OIDC federation — Google, GitHub, Microsoft, and tenant-scoped custom OIDC providers",
+          "Connected accounts — link / unlink external identities; platform-admin forced unmerge remediation",
           "Avatar uploads — two-phase presigned S3/MinIO flow, tenant-isolated storage",
           "Announcements — multi-lingual, async fan-out in batches of 1,000",
           "In-app notifications — WebSocket (STOMP/SockJS) real-time push",
@@ -71,7 +73,7 @@ import {
           "Correlation ID — generates or propagates X-Correlation-ID on every request",
           "Security response headers — X-Content-Type-Options, X-Frame-Options, etc.",
           "Aggregated Swagger UI — proxies downstream /api-docs through the gateway",
-          "Configurable public paths via iqkv.gateway.public-paths",
+          "Configurable public paths via iqkv.gateway.public-paths, including OAuth2/OIDC auth endpoints",
           "Prometheus metrics + structured JSON logging with MDC context",
         ]}
         delay={0.2}
@@ -90,8 +92,8 @@ import {
           "Idempotent webhook processing — duplicate delivery is safe",
           "Subscription lifecycle events — created, cancelled, invoice.paid, payment.failed",
           "Refunds API — full or partial refunds; TENANT_OWNER and PLATFORM_ADMIN access",
-          "Stripe Customer Portal sessions — self-service billing management for TENANT_OWNER",
-          "Plan catalog with PLATFORM_ADMIN management endpoints",
+          "Self-service billing portal sessions for TENANT_OWNER via Stripe or Lemon Squeezy",
+          "Plan catalog with read-only PLATFORM_ADMIN visibility and config-driven management",
           "Active subscription query for TENANT_OWNER and MEMBER roles",
           "Grafana dashboard — MRR, churn, refund volume, payment success rates",
         ]}
@@ -163,15 +165,16 @@ import {
         title="Tenant App"
         description="The customer-facing surface of the platform. A React 19 SPA built with Mantine UI and Feature-Sliced Design."
         features={[
-          "Two-step sign-in flow with tenant discovery",
+          "Tenant discovery plus OAuth2/OIDC social sign-in and enterprise SSO entry",
           "Self-service signup with async provisioning polling",
           "Workspace dashboard with basic stats and team overview",
           "Team management — member list, ban/unban, role editing, ownership transfer",
           "Invitation system — send, preview, and accept workspace invites",
-          "Billing self-service — Stripe Customer Portal, subscription view, plan catalog, refunds",
+          "Billing self-service — Stripe or Lemon Squeezy portal, subscription view, plan catalog, refunds",
           "Tenant settings — organization metadata editing",
+          "Security settings — TENANT_OWNER config for custom OIDC / enterprise SSO",
           "In-app notifications — bell, dropdown, notification center, real-time WebSocket push",
-          "My Account — profile editing, avatar upload, password reset, organization list",
+          "My Account — profile editing, avatar upload, password reset, organization list, connected accounts",
           "Internationalization with Lingui (English catalog implemented)",
           "Session security — 30-min inactivity timeout and silent token refresh",
           "Runtime configuration via public/config.js overrides",
@@ -187,12 +190,13 @@ import {
         description="The internal operator console for platform management. Requires PLATFORM_ADMIN authority to access."
         features={[
           "Dashboard with real-time count cards for users, orgs, and subscriptions",
-          "Global User management — paginated list, detail view, profile edits, ban/unlock",
+          "Global User management — paginated list, detail view, profile edits, ban/unlock, platform authority tab",
           "Organization administration — 5-tab detail: Overview, Members, Billing, Subscriptions, Refunds",
           "Invitation management — propose, edit, and revoke platform-wide invites",
-          "Subscription monitoring — read-only global list with status filters",
-          "Plan catalog CRUD — create, edit, and delete billing plans",
-          "Refunds management — global list, issue full or partial refunds via Stripe",
+          "Subscription monitoring — global list with status filters plus cancel, pause, reactivate, quantity update",
+          "Plan catalog — read-only reference sourced from deployment configuration",
+          "Refunds management — global list and detail across Stripe or Lemon Squeezy",
+          "OIDC identity remediation — list linked identities and force-unmerge when needed",
           "Announcements — multi-lingual editor, publish/unpublish, delivery tracking",
           "Audit logs — global trail across all tenants, filterable, detail view with JSONB expansion",
           "In-app notifications — bell, dropdown, real-time WebSocket push",
@@ -230,8 +234,8 @@ import {
               <div>
                 <h3 class="font-semibold mb-2 text-lg">Security</h3>
                 <p class="text-sm text-base-content/70">
-                  Spring Security OAuth2 Resource Server · BCrypt strength 12 ·
-                  JWKS endpoint · JTI denylist · Two-layer token revocation · Stripe SDK
+                  Spring Security OAuth2 Resource Server + OAuth2 Client · BCrypt strength 12 ·
+                  JWKS endpoint · JTI denylist · Two-layer token revocation · Redis PKCE store
                 </p>
               </div>
             </div>
