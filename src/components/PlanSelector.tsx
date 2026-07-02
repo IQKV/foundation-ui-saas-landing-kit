@@ -9,7 +9,7 @@ interface PlanFeature {
   description?: string;
 }
 
-interface PlanFeatures {
+interface PlanEntitlement {
   maxUsers: number;
   maxProjects: number;
   features: Record<string, PlanFeature>;
@@ -22,7 +22,7 @@ interface PublicPlanEntry {
   billingPeriod: "MONTHLY" | "ANNUAL";
   priceMinor: number;
   currency: string;
-  features: PlanFeatures;
+  features: PlanEntitlement;
   scope: string;
   active: boolean;
 }
@@ -42,7 +42,7 @@ function formatPrice(priceMinor: number, currency: string) {
   }).format(major);
 }
 
-function hasPrioritySupport(features: PlanFeatures["features"]): boolean {
+function hasPrioritySupport(features: PlanEntitlement["features"]): boolean {
   const entry = features["priority_support"];
   return entry !== undefined && entry.value.toLowerCase() === "true";
 }

@@ -19,7 +19,7 @@ interface PlanFeature {
   description?: string;
 }
 
-interface PlanFeatures {
+interface PlanEntitlement {
   maxUsers: number;
   maxProjects: number;
   features: Record<string, PlanFeature>;
@@ -32,7 +32,7 @@ interface PublicPlanEntry {
   billingPeriod: "MONTHLY" | "ANNUAL";
   priceMinor: number;
   currency: string;
-  features: PlanFeatures;
+  features: PlanEntitlement;
   scope: string;
   active: boolean;
 }
