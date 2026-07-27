@@ -60,7 +60,7 @@ export function TopNav() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              IQ Key Value
+              iQ Key Value
             </motion.a>
             <span className="badge badge-warning badge-sm">DEMO</span>
           </div>
