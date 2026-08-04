@@ -52,7 +52,7 @@
     "lint-staged": "^17.0.8",
     "oxfmt": "^0.60.0",
     "oxlint": "^1.74.0",
-    "oxlint-tsgolint": "^0.24.0",
+    "oxlint-tsgolint": "^7.0.2001",
     "prettier-plugin-astro": "^0.14.1",
     "release-it": "^20.2.1",
     "release-it-pnpm": "^4.6.6",
