@@ -60,7 +60,7 @@ export function AnimatedHero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
-                Four production-ready services: IAM, Gateway, Billing, and Audit. Two React SPAs:
+                Five production-ready services: IAM, Gateway, Billing, CMS and Audit. Two React SPAs:
                 Tenant App and Platform Admin. Kubernetes-native with Helm charts and selectable
                 Stripe or Lemon Squeezy billing.
               </motion.p>
