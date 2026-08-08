@@ -60,9 +60,9 @@ export function AnimatedHero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
-                Five production-ready services: IAM, Gateway, Billing, CMS and Audit. Two React SPAs:
-                Tenant App and Platform Admin. Kubernetes-native with Helm charts and selectable
-                Stripe or Lemon Squeezy billing.
+                Five production-ready services: IAM, Gateway, Billing, CMS and Audit. Two React
+                SPAs: Tenant App and Platform Admin. Kubernetes-native with Helm charts and
+                selectable Stripe or Lemon Squeezy billing.
               </motion.p>
               <motion.div
                 className="flex flex-col sm:flex-row gap-4"
