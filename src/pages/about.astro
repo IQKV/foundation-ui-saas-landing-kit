@@ -14,6 +14,7 @@ import {
   Settings01Icon,
   GithubIcon,
   Activity03Icon,
+  FileEditIcon,
 } from "@hugeicons/core-free-icons";
 ---
 
@@ -22,9 +23,10 @@ import {
     <div class="text-center mb-12">
       <h1 class="text-4xl font-bold mb-4">About iQ Key Value</h1>
       <p class="text-lg max-w-2xl mx-auto text-base-content/70">
-        Open source hybrid tenancy SaaS foundation with identity federation. Production-ready IAM,
-        Gateway, Billing, and Audit microservices on Java 25 + Spring Boot 4 — deploy as multi-tenant
-        B2B or single-tenant B2C from the same codebase with OAuth2/OIDC and enterprise SSO built in.
+        Open source hybrid tenancy SaaS foundation with identity federation and plan enforcement.
+        Five production-ready microservices (IAM, Gateway, Billing, Audit, CMS) on Java 25 + Spring Boot 4 —
+        deploy as multi-tenant B2B or single-tenant B2C from the same codebase with OAuth2/OIDC, enterprise SSO,
+        magic-link passwordless sign-in, FLAT + PER_SEAT pricing, and plan-code feature gating built in.
       </p>
     </div>
 
@@ -51,8 +53,9 @@ import {
               <IconBox icon={SecurityLockIcon} client:load />
               <h3 class="card-title text-primary">IAM Service</h3>
               <p class="text-sm text-base-content/70">
-                Full identity lifecycle — signup, JWT RS256 auth, OAuth2/OIDC social login,
-                tenant-scoped enterprise SSO, invitation flows, brute-force protection, token revocation, email verification.
+                Full identity lifecycle — signup, JWT RS256 auth with plan_code claim, magic-link passwordless sign-in,
+                OAuth2/OIDC social login, tenant-scoped enterprise SSO, platform tenant personal workspace,
+                invitation flows, brute-force protection, token revocation, email verification.
               </p>
             </div>
           </div>
@@ -62,7 +65,7 @@ import {
               <h3 class="card-title text-primary">Gateway Service</h3>
               <p class="text-sm text-base-content/70">
                 Reactive Spring Cloud Gateway — JWT validation, header sanitization, tenant
-                context propagation, correlation IDs, security response headers.
+                context propagation, correlation IDs, plan-code enforcement, PlatformModeGuard, security response headers.
               </p>
             </div>
           </div>
@@ -71,8 +74,9 @@ import {
               <IconBox icon={CreditCardIcon} client:load />
               <h3 class="card-title text-primary">Billing Service</h3>
               <p class="text-sm text-base-content/70">
-                Gateway-agnostic payment abstraction — Stripe and Lemon Squeezy integration, per-tenant customer
-                provisioning, subscription lifecycle, refunds API, self-service billing management.
+                Gateway-agnostic payment abstraction — Stripe and Lemon Squeezy via PaymentGatewayPort,
+                FLAT + PER_SEAT pricing with trials, per-tenant customer provisioning,
+                subscription lifecycle, seats API, refunds, and self-service billing management.
               </p>
             </div>
           </div>
@@ -81,8 +85,18 @@ import {
               <IconBox icon={Activity03Icon} client:load />
               <h3 class="card-title text-primary">Audit Service</h3>
               <p class="text-sm text-base-content/70">
-                Centralized event-driven audit trail — passive RabbitMQ consumption, SPI-based
-                extensibility, JSONB metadata, and PLATFORM_ADMIN search API.
+                Centralized event-driven audit trail — passive RabbitMQ consumption,
+                ActivitySeverity enum, SPI-based extensibility, JSONB metadata with custom MyBatis TypeHandler, and PLATFORM_ADMIN search API.
+              </p>
+            </div>
+          </div>
+          <div class="card bg-base-100 shadow-xl border border-base-200">
+            <div class="card-body">
+              <IconBox icon={FileEditIcon} client:load />
+              <h3 class="card-title text-primary">CMS Service</h3>
+              <p class="text-sm text-base-content/70">
+                Content management microservice — static page CRUD with draft/published lifecycle,
+                multi-language with en-US fallback, hierarchical slugs, SEO metadata, tenant-isolated schemas, RabbitMQ event publishing.
               </p>
             </div>
           </div>
@@ -91,8 +105,9 @@ import {
               <IconBox icon={Globe02Icon} client:load />
               <h3 class="card-title text-secondary">Tenant App</h3>
               <p class="text-sm text-base-content/70">
-                React 19 SPA for workspace members — sign-in, social login, enterprise SSO,
-                team management, invitations, billing self-service, connected accounts, and i18n support with Lingui.
+                React 19 SPA for workspace members — magic-link + social sign-in, enterprise SSO entry,
+                create organization, team management, invitations, plan-aware feature gates,
+                billing self-service, connected accounts, Lingui i18n (en-US, bg-BG, de-DE, fr-FR).
               </p>
             </div>
           </div>
@@ -101,8 +116,8 @@ import {
               <IconBox icon={Shield01Icon} client:load />
               <h3 class="card-title text-secondary">Platform Admin</h3>
               <p class="text-sm text-base-content/70">
-                Internal operator console — global user/org management, subscription and refund
-                monitoring, platform authority controls, OIDC identity remediation, announcements, and audit log browser.
+                Internal operator console — global user (3-tab detail: Overview/Orgs/Identities) + org (5-tab: Overview/Members/Billing/Subscriptions/Refunds) management,
+                subscription and refund monitoring, platform authority controls, OIDC identity remediation, announcements, audit log browser, Lingui i18n (4 languages).
               </p>
             </div>
           </div>
@@ -112,7 +127,7 @@ import {
               <h3 class="card-title text-accent">Landing Kit</h3>
               <p class="text-sm text-base-content/70">
                 The Astro landing kit you're looking at right now — optimized for performance,
-                SEO, and developer experience with Tailwind CSS and DaisyUI.
+                SEO, and developer experience with Tailwind CSS, DaisyUI, and build-time plan fetching.
               </p>
             </div>
           </div>
@@ -130,15 +145,21 @@ import {
             One codebase, two deployment models. Set <code class="bg-base-300 px-1 rounded text-sm">platform.rolloutMode</code> to
             choose between <strong>MULTI_TENANT</strong> (schema-per-tenant PostgreSQL isolation, each company
             gets a dedicated schema) and <strong>SINGLE_TENANT</strong> (all users in one default workspace,
-            ideal for B2C). The same platform also carries OAuth2/OIDC social login and tenant-scoped enterprise
-            SSO. No code changes required.
+            ideal for B2C). Every user is auto-joined to the fixed <code class="bg-base-300 px-1 rounded text-sm">platform</code> tenant
+            as a personal workspace, always accessible even if an org tenant is suspended. Architectural zero-migration
+            symmetry between modes. No code changes required.
           </p>
           <div class="flex flex-wrap gap-2">
             <span class="badge badge-primary">Multi-Tenant B2B</span>
             <span class="badge badge-secondary">Single-Tenant B2C</span>
+            <span class="badge badge-accent">Platform Personal Workspace</span>
             <span class="badge badge-outline">Schema-Per-Tenant</span>
+            <span class="badge badge-outline">Zero-Migration Symmetry</span>
             <span class="badge badge-outline">Liquibase Migrations</span>
             <span class="badge badge-outline">RabbitMQ Provisioning</span>
+            <span class="badge badge-outline">ShedLock Stuck-Reaper (5 min)</span>
+            <span class="badge badge-outline">Gateway PlatformModeGuard (503)</span>
+            <span class="badge badge-outline">PROVISIONING→ACTIVE↔SUSPENDED Lifecycle</span>
           </div>
         </div>
       </section>
@@ -199,8 +220,9 @@ import {
               <IconBox icon={Shield01Icon} size={20} client:load />
               <h3 class="card-title">Security by Default</h3>
               <p class="text-sm text-base-content/70">
-                RS256 JWT, OAuth2/OIDC federation, Redis-backed PKCE state handling,
-                brute-force lockout, header sanitization, schema-per-tenant isolation, and two-layer token revocation.
+                RS256 JWT with plan_code claim, OAuth2/OIDC federation, Redis-backed PKCE state handling,
+                magic-link passwordless auth with rate limiting, brute-force lockout,
+                header sanitization, schema-per-tenant isolation, and two-layer token revocation.
               </p>
             </div>
           </div>

@@ -26,8 +26,8 @@ import {
           Platform Services
         </h1>
         <p class="text-xl max-w-2xl mx-auto text-base-content/70">
-          Four production-ready microservices — each independently deployable with its own
-          Helm chart, CI/CD pipeline, and PostgreSQL database.
+          Five production-ready microservices + two React SPAs + Astro landing kit — 100+ REST APIs,
+          each independently deployable with Helm charts, 10-stage CI/CD pipelines, and dedicated databases.
         </p>
       </div>
     </AnimatedSection>
@@ -37,23 +37,24 @@ import {
       <FeatureCard
         icon={SecurityLockIcon}
         title="IAM Service"
-        description="Full identity lifecycle for multi-tenant SaaS. Handles signup, authentication, OAuth2/OIDC federation, tenant provisioning, and access control."
+        description="60+ endpoints covering full identity lifecycle for multi-tenant SaaS: signup, password + magic-link, OAuth2/OIDC federation, tenant provisioning, plan enforcement, and access control."
         features={[
-          "Self-service signup — creates user + tenant in one call",
-          "Signup by invitation — time-limited (72 h), MEMBER authority by default",
-          "JWT RS256 — 15-min access tokens, 7-day refresh tokens with tenant_id",
-          "Brute-force protection — 5 attempts → 15-min lockout per email",
-          "Token revocation — JTI denylist + global signout timestamp",
-          "Password reset — rate-limited (3 req / 15 min), 1-hour TTL tokens",
-          "Email verification with Thymeleaf transactional emails",
-          "Tenant lifecycle — suspend, delete, retry provisioning, ShedLock reaper",
-          "JWKS endpoint for gateway JWT validation",
-          "Token exchange — tenant switching without re-authentication",
-          "OAuth2 / OIDC federation — Google, GitHub, Microsoft, and tenant-scoped custom OIDC providers",
-          "Connected accounts — link / unlink external identities; platform-admin forced unmerge remediation",
-          "Avatar uploads — two-phase presigned S3/MinIO flow, tenant-isolated storage",
-          "Announcements — multi-lingual, async fan-out in batches of 1,000",
-          "In-app notifications — WebSocket (STOMP/SockJS) real-time push",
+          "Self-service signup — creates user + tenant (multi) or joins default (single); platform user always created",
+          "Signup status polling, tenant discovery, and async RabbitMQ tenant provisioning with reaper",
+          "JWT RS256 — 15-min access, 7-day refresh with tenant_id + plan_code claims; JWKS public endpoint",
+          "Magic link passwordless auth — initiate/resend/exchange, TTL configurable, rate-limited, personal workspace",
+          "Brute-force protection — 5 attempts → 15-min lockout; admin unlock; failed-attempt cleanup",
+          "Token revocation — JTI denylist (single signout) + last_global_signout_at timestamp (all sessions)",
+          "Password reset / change — rate-limited reset; change invalidates all sessions; BCrypt strength 12",
+          "Email verification — token-based, resend rate-limited; OAuth verified emails auto-linked",
+          "OAuth2 / OIDC federation — Google, GitHub, Microsoft + PKCE Redis state + tenant-scoped custom OIDC",
+          "Connected accounts — link/unlink, GitHub requires verified email, admin forced unlink remediation",
+          "Platform tenant — 'platform' key personal workspace for every user, auto-joined as MEMBER in all modes",
+          "Tenant owner member mgmt — list, authorities (ADMIN/MEMBER/OWNER), ban, ownership transfer guardrails",
+          "Avatar uploads — two-phase presigned S3/MinIO, old auto-deleted, tenant-isolated prefixes",
+          "Announcements — multi-lingual editor, DRAFT→PUBLISHED lifecycle, 1K-batch async fan-out + WebSocket broadcast",
+          "In-app notifications — persistent table + unread count, mark-as-read bulk/dismiss, STOMP/SockJS per-user push",
+          "Platform admin — users CRUD + set password, ban/unlock, tenants CRUD, invitations/announcements/counts",
         ]}
         delay={0.1}
         client:load
@@ -63,18 +64,23 @@ import {
       <FeatureCard
         icon={Globe02Icon}
         title="Gateway Service"
-        description="Reactive Spring Cloud Gateway — the single entry point for the platform. Handles all cross-cutting concerns so downstream services receive a clean, enriched context."
+        description="Reactive Spring Cloud Gateway — the single entry point. Handles security, context propagation, plan enforcement, and cross-cutting filters so downstream services get a clean, verified request."
         features={[
           "JWT RS256 validation via JWKS (Spring Security OAuth2 Resource Server)",
-          "Header sanitization — strips X-User-*, X-Tenant-ID, X-Audit-* before JWT processing",
-          "Context propagation — X-User-ID, X-User-Email, X-User-Authorities, X-Tenant-ID",
+          "Header sanitization — strips X-User-*, X-Tenant-ID, X-Audit-*, X-Plan-Code before JWT processing",
+          "Context propagation — X-User-ID, X-Username, X-User-Email, X-User-Authorities, X-Tenant-ID",
+          "Plan code header — extracts plan_code from JWT and propagates as X-Plan-Code; client value overwritten",
+          "Plan feature enforcement — RequiresPlanFeatureFilterFactory for route-level declarative plan checks",
           "Audit context — AuditContextFilter injects X-Audit-IP, X-Audit-UA, X-Audit-Source",
           "Monitoring filter — per-tenant request rate, latency, status; Grafana dashboard included",
-          "Correlation ID — generates or propagates X-Correlation-ID on every request",
-          "Security response headers — X-Content-Type-Options, X-Frame-Options, etc.",
+          "Correlation ID — generates or propagates X-Correlation-ID on every request; echoed in response",
+          "Platform mode guard — polls IAM /actuator/info for rollout-mode; 503 REFUSING_TRAFFIC on mismatch",
+          "Tenant context filter — multi-tenant from JWT, single-tenant injects default tenant key if missing",
+          "Security response headers — X-Content-Type-Options, X-Frame-Options, X-XSS-Protection, Referrer-Policy",
           "Aggregated Swagger UI — proxies downstream /api-docs through the gateway",
-          "Configurable public paths via iqkv.gateway.public-paths, including OAuth2/OIDC auth endpoints",
-          "Prometheus metrics + structured JSON logging with MDC context",
+          "Configurable public paths via iqkv.gateway.public-paths (OAuth2, magic-link, signup, etc.)",
+          "Reactive PlanResolver WebClient cache — refreshes plan catalog from billing every 10 minutes",
+          "Prometheus metrics + structured JSON logging with MDC correlation and tenant context",
         ]}
         delay={0.2}
         client:load
@@ -84,18 +90,25 @@ import {
       <FeatureCard
         icon={CreditCardIcon}
         title="Billing Service"
-        description="Gateway-agnostic payment abstraction layer. Handles tenant-to-customer mapping, webhook ingestion, and lifecycle event publishing. No custom billing logic lives here."
+        description="40+ endpoints, gateway-agnostic payment abstraction. Runtime-selectable Stripe or Lemon Squeezy, tenant-to-customer mapping, FLAT + PER_SEAT pricing, trials, and normalized webhook ingestion."
         features={[
-          "Automatic customer provisioning on tenant.provisioned RabbitMQ event",
-          "Billing settings — billing email, tax ID / VAT/GST per tenant",
-          "Stripe and Lemon Squeezy integration via PaymentGatewayPort Strategy pattern",
-          "Idempotent webhook processing — duplicate delivery is safe",
-          "Subscription lifecycle events — created, cancelled, invoice.paid, payment.failed",
-          "Refunds API — full or partial refunds; TENANT_OWNER and PLATFORM_ADMIN access",
-          "Self-service billing portal sessions for TENANT_OWNER via Stripe or Lemon Squeezy",
-          "Plan catalog with read-only PLATFORM_ADMIN visibility and config-driven management",
-          "Active subscription query for TENANT_OWNER and MEMBER roles",
-          "Grafana dashboard — MRR, churn, refund volume, payment success rates",
+          "Runtime gateway selection — GatewayType (STRIPE / LEMON_SQUEEZY); @ConditionalOnGateway bean wiring",
+          "PaymentGatewayPort abstraction — both adapters implement one unified Strategy interface",
+          "Plan catalog — config-driven YAML; billingPeriod (MONTHLY/ANNUAL), scope (TENANT/USER), active flag",
+          "Pricing models — FLAT (per billing period) + PER_SEAT (price per user/seat), trialPeriodDays",
+          "Seat adjustment endpoint — PATCH seats for PER_SEAT plans; validates against plan maxUsers",
+          "Customer provisioning — auto-created on tenant.provisioned RabbitMQ event; stores externalCustomerId",
+          "Billing settings — billing email, company name, taxId/VAT/GST, billingAddress JSONB, currency",
+          "Checkout sessions — Stripe Checkout / Lemon Squeezy variant checkout per tenant per plan",
+          "Customer portal — Stripe Billing portal or Lemon Squeezy portal sessions for TENANT_OWNER",
+          "Subscription lifecycle — create/update/cancel/pause/reactivate via gateway; isInTrial + trialDaysLeft",
+          "Entitlements API — GET /entitlements/me: planCode, status, trials, typed PlanEntitlement quotas",
+          "Refunds API — create/list full or partial refunds; TENANT_OWNER and PLATFORM_ADMIN access",
+          "Idempotent webhook processing — signature verification (Stripe / Lemon HMAC-SHA256)",
+          "Normalized webhook events — subscription, invoice, payment, charge.refunded, refund.created",
+          "Daily scheduled jobs — trial-ending + payment-overdue notifications (ShedLock-guarded)",
+          "PlanFeatureRegistry — in-memory O(1) feature evaluation; typed quotas (maxUsers, maxProjects)",
+          "Grafana dashboard — MRR total, payments/subscriptions/seat adjustments, webhooks, latencies",
         ]}
         delay={0.3}
         client:load
@@ -105,17 +118,19 @@ import {
       <FeatureCard
         icon={Book01Icon}
         title="Audit Service"
-        description="Centralized, event-driven audit trail. Passively observes platform events via RabbitMQ and transforms them into a searchable, compliance-ready log."
+        description="Centralized, event-driven audit trail. Passively observes all RabbitMQ platform events, normalizes them, and persists them as compliance-ready, searchable records with JSONB metadata."
         features={[
-          "Passive observation — binds to iqkv.events exchange; zero changes in domain services",
-          "Event normalization — UserEvent, TenantEvent, etc. mapped to AuditRecord",
-          "Technical context enrichment — IP and User-Agent from X-Audit-* Gateway headers",
-          "JSONB metadata storage — flexible schema-less dynamic event details",
-          "SPI-based extensibility — plug in Elasticsearch or custom SIEM via AuditProvider",
-          "Dedicated PostgreSQL database — high-volume logging isolated from business DB",
-          "PLATFORM_ADMIN search API — paginated, filterable by user, tenant, action, date",
-          "Audit detail view — full record with JSONB metadata expansion",
-          "Custom Prometheus metrics — event consumption rate, persistence latency, storage usage",
+          "Passive observation — wildcard routing keys; zero code changes required in domain services",
+          "Event normalization — UserEvent, TenantEvent, Subscription, Invoice, etc. → AuditRecord",
+          "Technical context enrichment — client IP and User-Agent from X-Audit-* Gateway headers",
+          "JSONB metadata storage — full event payload preserved, custom MyBatis JsonbTypeHandler",
+          "ActivitySeverity enum + severity filter on search/count endpoints",
+          "SPI-based extensibility — AuditProvider interface; plug in Elasticsearch or custom SIEM",
+          "Dedicated PostgreSQL database — high-volume logging isolated from business transaction DB",
+          "PLATFORM_ADMIN search API — paginated, filterable by user, tenant, action, severity, date range",
+          "Audit detail view — full record with structured JSONB metadata expansion",
+          "RabbitMQ consumer — message converter, DLQ, conditional guards, tenantKey mapping",
+          "Custom Prometheus metrics — event consumption (by type/source), persistence duration, search latency, storage usage",
         ]}
         delay={0.4}
         client:load
@@ -144,16 +159,20 @@ import {
       <FeatureCard
         icon={Settings01Icon}
         title="Hybrid Tenancy Model"
-        description="One codebase, two deployment models. Switch between multi-tenant B2B and single-tenant B2C with a single configuration flag."
+        description="One codebase, two deployment models. Switch multi-tenant B2B vs single-tenant B2C with platform.rolloutMode config flag. Same schema-per-tenant model in both — zero-migration symmetry."
         features={[
-          "Multi-tenant mode — schema-per-tenant PostgreSQL isolation",
-          "Single-tenant mode — all users join a pre-configured default workspace",
-          "Liquibase per-tenant schema versioning and migrations",
-          "RabbitMQ async tenant provisioning workflow",
-          "Automatic tenant context resolution from JWT claims",
-          "ShedLock-guarded reaper cleans up stuck PROVISIONING tenants",
-          "No code changes required — set platform.rolloutMode in config",
-          "Independent tenant status transitions — ACTIVE, SUSPENDED, DELETED",
+          "Multi-tenant mode — signup creates tenant (TENANT_OWNER); schema-per-tenant PostgreSQL isolation",
+          "Single-tenant mode — signup joins pre-provisioned default tenant (MEMBER); no tenant creation",
+          "Platform tenant — fixed 'platform' key/schema; every user auto-added as MEMBER in both modes",
+          "Zero-migration single→multi symmetry — architectural parity; same schema-per-tenant model in both",
+          "Liquibase per-tenant schema versioning and migrations per tenant key",
+          "MyBatisSchemaInterceptor automatically sets t_{tenantKey} search_path per request",
+          "RabbitMQ async provisioning — runs Liquibase, sets ACTIVE, publishes tenant.provisioned event",
+          "Stuck provisioning reaper — ShedLock-guarded every 5 min; marks PROVISIONING as PROVISIONING_FAILED",
+          "Rollout mode validation — validated at startup; published via /actuator/info for cross-service checks",
+          "Gateway PlatformModeGuard — mismatches set ReadinessState.REFUSING_TRAFFIC returning 503",
+          "Tenant lifecycle transitions — PROVISIONING→ACTIVE↔SUSPENDED→DELETED with PROVISIONING_FAILED retry",
+          "Independent tenant status transitions — workspace stays accessible even when org tenant suspended",
         ]}
         delay={0.5}
         client:load
@@ -163,21 +182,25 @@ import {
       <FeatureCard
         icon={UserIcon}
         title="Tenant App"
-        description="The customer-facing surface of the platform. A React 19 SPA built with Mantine UI and Feature-Sliced Design."
+        description="The customer-facing surface of the platform. A React 19 SPA built with Mantine UI 9, TanStack Router, and Feature-Sliced Design with runtime feature flags."
         features={[
-          "Tenant discovery plus OAuth2/OIDC social sign-in and enterprise SSO entry",
-          "Self-service signup with async provisioning polling",
-          "Workspace dashboard with basic stats and team overview",
-          "Team management — member list, ban/unban, role editing, ownership transfer",
-          "Invitation system — send, preview, and accept workspace invites",
-          "Billing self-service — Stripe or Lemon Squeezy portal, subscription view, plan catalog, refunds",
+          "Tenant discovery plus OAuth2/OIDC social sign-in (Google/GitHub/Microsoft) and enterprise SSO entry",
+          "Magic link passwordless sign-in — initiate/resend screens, token exchange, VITE_ENABLE_MAGIC_LINK flag",
+          "Self-service signup with async provisioning polling until tenant is ACTIVE",
+          "Create organization — authenticated route to spin up additional workspaces with platform membership",
+          "Workspace dashboard with basic stats, team member count, and plan-aware feature gating",
+          "Team management — member list, ban/unban, role editing, ownership transfer with guardrails",
+          "Invitation system — send, list, revoke, and accept workspace invites; plan quota-aware",
+          "Billing self-service — Stripe or Lemon Squeezy portal, subscription view, plan catalog, billing info, refunds",
+          "Seat adjustments — per-seat plan seat count editor for TENANT_OWNER",
+          "Plan-based access control — EntitlementsProvider, FeatureGate, useHasFeature, useQuota hooks",
           "Tenant settings — organization metadata editing",
-          "Security settings — TENANT_OWNER config for custom OIDC / enterprise SSO",
-          "In-app notifications — bell, dropdown, notification center, real-time WebSocket push",
-          "My Account — profile editing, avatar upload, password reset, organization list, connected accounts",
-          "Internationalization with Lingui (English catalog implemented)",
-          "Session security — 30-min inactivity timeout and silent token refresh",
-          "Runtime configuration via public/config.js overrides",
+          "Security settings — TENANT_OWNER config for custom OIDC / enterprise SSO providers",
+          "In-app notifications — bell, dropdown, notification center, real-time STOMP/SockJS WebSocket push",
+          "My Account — profile editing, avatar upload, password reset, organization picker, connected accounts",
+          "Internationalization with Lingui — en-US, bg-BG, de-DE, fr-FR catalogs; locale switcher UI",
+          "Session security — 30-min inactivity timeout and silent token refresh in sessionStorage",
+          "Runtime configuration via public/config.js VITE_* overrides without rebuild",
         ]}
         delay={0.6}
         client:load
@@ -187,21 +210,23 @@ import {
       <FeatureCard
         icon={Shield01Icon}
         title="Platform Admin"
-        description="The internal operator console for platform management. Requires PLATFORM_ADMIN authority to access."
+        description="The internal operator console for platform management. Requires PLATFORM_ADMIN authority to access. React 19 SPA with Mantine UI 9, multi-tab detail views, and plan-aware feature gating."
         features={[
-          "Dashboard with real-time count cards for users, orgs, and subscriptions",
-          "Global User management — paginated list, detail view, profile edits, ban/unlock, platform authority tab",
-          "Organization administration — 5-tab detail: Overview, Members, Billing, Subscriptions, Refunds",
-          "Invitation management — propose, edit, and revoke platform-wide invites",
-          "Subscription monitoring — global list with status filters plus cancel, pause, reactivate, quantity update",
-          "Plan catalog — read-only reference sourced from deployment configuration",
-          "Refunds management — global list and detail across Stripe or Lemon Squeezy",
-          "OIDC identity remediation — list linked identities and force-unmerge when needed",
-          "Announcements — multi-lingual editor, publish/unpublish, delivery tracking",
-          "Audit logs — global trail across all tenants, filterable, detail view with JSONB expansion",
-          "In-app notifications — bell, dropdown, real-time WebSocket push",
-          "Operator account management — profile and password updates",
-          "Strict RBAC enforcement with automated route guards",
+          "Dashboard with parallel count cards for total users, organizations, and active subscriptions",
+          "Global User management — paginated list; 3-tab detail: Overview, Organizations, Identities; set password, ban/unban/unlock, platform authorities",
+          "Organization administration — 5-tab detail: Overview, Members, Billing, Subscriptions, Refunds; edit metadata, manage authorities",
+          "Invitation management — propose, edit, and revoke platform-wide cross-tenant invites",
+          "Subscription monitoring — global paginated list with status filters; cancel/pause/reactivate via gateway, quantity update",
+          "Plan catalog — read-only list; sourced from config-driven YAML + deployment",
+          "Refunds management — global refund list and detail view across Stripe or Lemon Squeezy",
+          "User identity management — view linked OIDC identities for any user; admin forced unlink remediation",
+          "Announcements — multi-lingual editor (en-US mandatory + optional translations), publish workflow, delivery tracking",
+          "Audit logs — global audit trail across all tenants; filter by user, tenant, action, ActivitySeverity, date range; JSONB expansion",
+          "In-app notifications — bell, dropdown, real-time STOMP/SockJS WebSocket push",
+          "Operator account — profile editing, password change",
+          "Internationalization with Lingui — en-US, bg-BG, de-DE, fr-FR catalogs; locale switcher UI",
+          "Runtime config — public/config.js VITE_* overrides without rebuild",
+          "Strict RBAC enforcement with automated route guards and PLATFORM_ADMIN authority validation",
         ]}
         delay={0.7}
         client:load

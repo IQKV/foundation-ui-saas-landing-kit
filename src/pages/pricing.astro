@@ -42,13 +42,43 @@ const fallbackPlans: PublicPlanEntry[] = [
   {
     planCode: "free",
     displayName: "Free",
-    description: "Get started for free. Upgrade anytime.",
+    description: "Personal workspace — perfect for evaluation. Upgrade anytime.",
     billingPeriod: "MONTHLY",
     priceMinor: 0,
     currency: "USD",
     features: {
       maxUsers: 1,
       maxProjects: 1,
+      features: {},
+    },
+    scope: "TENANT",
+    active: true,
+  },
+  {
+    planCode: "starter",
+    displayName: "Starter",
+    description: "Flat-rate plan for small teams just getting started. 14-day free trial.",
+    billingPeriod: "MONTHLY",
+    priceMinor: 2900,
+    currency: "USD",
+    features: {
+      maxUsers: 5,
+      maxProjects: 10,
+      features: {},
+    },
+    scope: "TENANT",
+    active: true,
+  },
+  {
+    planCode: "pro_seat",
+    displayName: "Pro",
+    description: "Per-seat pricing for growing teams. Scale seats as you hire. 14-day free trial.",
+    billingPeriod: "MONTHLY",
+    priceMinor: 1900,
+    currency: "USD",
+    features: {
+      maxUsers: 0,
+      maxProjects: 0,
       features: {},
     },
     scope: "TENANT",
@@ -77,34 +107,35 @@ try {
     <div class="text-center mb-12">
       <h1 class="text-4xl font-bold mb-4">Simple Pricing</h1>
       <p class="text-lg max-w-2xl mx-auto">
-        Choose the plan that fits your team's needs. All plans include our
-        complete microservices platform with hybrid tenancy, OAuth2/OIDC identity federation,
-        enterprise SSO support, and multi-gateway billing.
+        Choose the plan that fits your team's needs. Flat-rate or per-seat pricing — whichever scales best for you.
+        All plans include our five microservices, hybrid tenancy B2B/B2C, OAuth2/OIDC identity federation,
+        enterprise SSO, magic-link passwordless sign-in, 14-day free trials, plan-code enforcement,
+        and Stripe or Lemon Squeezy checkout.
       </p>
     </div>
 
     <!-- Client-side plan selector -->
     <PlanSelector client:load plans={plans} />
 
-    <section class="max-w-4xl mx-auto">
+    <section class="max-w-5xl mx-auto">
       <h2 class="text-2xl font-semibold mb-8 text-center">What's Included</h2>
       <div class="grid md:grid-cols-3 gap-6">
         <div class="card bg-base-100 shadow-xl">
           <div class="card-body items-center text-center">
             <IconBox icon={SecurityLockIcon} client:load />
-            <p class="font-medium">IAM — Identity, OAuth2/OIDC, SSO</p>
+            <p class="font-medium">IAM — Identity, OAuth2/OIDC, Magic Link, SSO</p>
           </div>
         </div>
         <div class="card bg-base-100 shadow-xl">
           <div class="card-body items-center text-center">
             <IconBox icon={Globe02Icon} client:load />
-            <p class="font-medium">Gateway — Reactive API Gateway</p>
+            <p class="font-medium">Gateway — Reactive API, Plan Enforcement</p>
           </div>
         </div>
         <div class="card bg-base-100 shadow-xl">
           <div class="card-body items-center text-center">
             <IconBox icon={CreditCardIcon} client:load />
-            <p class="font-medium">Billing — Stripe or Lemon Squeezy</p>
+            <p class="font-medium">Billing — Stripe or Lemon Squeezy, Trials</p>
           </div>
         </div>
         <div class="card bg-base-100 shadow-xl">
@@ -116,19 +147,49 @@ try {
         <div class="card bg-base-100 shadow-xl">
           <div class="card-body items-center text-center">
             <IconBox icon={Database01Icon} client:load />
-            <p class="font-medium">Hybrid Tenancy — B2B + B2C</p>
+            <p class="font-medium">CMS — Static Pages, i18n, SEO Metadata</p>
           </div>
         </div>
         <div class="card bg-base-100 shadow-xl">
           <div class="card-body items-center text-center">
             <IconBox icon={Settings01Icon} client:load />
-            <p class="font-medium">Kubernetes + Helm Charts</p>
+            <p class="font-medium">Hybrid Tenancy — B2B Multi + B2C Single</p>
           </div>
         </div>
         <div class="card bg-base-100 shadow-xl">
           <div class="card-body items-center text-center">
             <IconBox icon={BookOpen01Icon} client:load />
-            <p class="font-medium">10-Stage CI/CD Pipeline</p>
+            <p class="font-medium">10-Stage CI/CD + Testcontainers Gates</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body items-center text-center">
+            <IconBox icon={Settings01Icon} client:load />
+            <p class="font-medium">Kubernetes + Helm Charts with HPA</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body items-center text-center">
+            <IconBox icon={Globe02Icon} client:load />
+            <p class="font-medium">i18n — en-US, bg-BG, de-DE, fr-FR Catalogs</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body items-center text-center">
+            <IconBox icon={CreditCardIcon} client:load />
+            <p class="font-medium">FLAT + PER_SEAT Pricing Models</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body items-center text-center">
+            <IconBox icon={SecurityLockIcon} client:load />
+            <p class="font-medium">Plan Code JWT Claim + Feature Gating</p>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body items-center text-center">
+            <IconBox icon={Activity03Icon} client:load />
+            <p class="font-medium">Trial-Ending & Payment-Overdue Reminders</p>
           </div>
         </div>
       </div>

@@ -18,6 +18,9 @@ import {
   UserIcon,
   MessageIcon,
   RefreshIcon,
+  FileEditIcon,
+  Key01Icon,
+  Mail01Icon,
 } from "@hugeicons/core-free-icons";
 ---
 
@@ -25,43 +28,50 @@ import {
   <!-- Hero -->
   <AnimatedHero client:load />
 
-  <!-- Four core services -->
+  <!-- Five core services -->
   <div class="container mx-auto px-4">
     <AnimatedSection client:load>
       <section class="py-20">
         <h2 class="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-          Four Production-Ready Services
+          Five Production-Ready Services
         </h2>
         <p class="text-center text-base-content/60 mb-12 text-lg">
-          Each service ships with its own Helm chart, CI/CD pipeline, and dedicated database
+          100+ REST APIs, each with its own Helm chart, CI/CD pipeline, and dedicated PostgreSQL database
         </p>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
           <AnimatedCard
             icon={SecurityLockIcon}
             title="IAM Service"
-            description="Full identity lifecycle — signup, JWT RS256 auth, OAuth2/OIDC social login, tenant-scoped enterprise SSO, token exchange, avatar uploads, announcements, and in-app notifications."
+            description="60+ identity endpoints — signup, JWT RS256, magic-link passwordless auth, OAuth2/OIDC social login, tenant-scoped enterprise SSO, token exchange, avatar uploads, announcements, and in-app notifications."
             delay={0.1}
             client:load
           />
           <AnimatedCard
             icon={Globe02Icon}
             title="Gateway Service"
-            description="Reactive Spring Cloud Gateway — JWT validation via JWKS, header sanitization, audit context propagation, per-tenant metrics, and Swagger aggregation."
+            description="Reactive Spring Cloud Gateway — JWT validation via JWKS, header sanitization, audit context propagation, per-tenant metrics, Swagger aggregation, and plan feature enforcement."
             delay={0.2}
             client:load
           />
           <AnimatedCard
             icon={CreditCardIcon}
             title="Billing Service"
-            description="Gateway-agnostic payment abstraction — Stripe and Lemon Squeezy integration, per-tenant customer provisioning, subscription lifecycle, refunds API, and Customer Portal sessions."
+            description="40+ payment endpoints — Stripe + Lemon Squeezy, per-tenant customers, FLAT and PER_SEAT pricing, subscription lifecycle, free trials, refunds, and Customer Portal sessions."
             delay={0.3}
             client:load
           />
           <AnimatedCard
             icon={Book01Icon}
             title="Audit Service"
-            description="Centralized event-driven audit trail — passive RabbitMQ consumption, SPI-based extensibility, JSONB metadata, and PLATFORM_ADMIN search API."
+            description="Centralized event-driven audit trail — passive RabbitMQ consumption, SPI-based extensibility, JSONB metadata, and PLATFORM_ADMIN search API with filters."
             delay={0.4}
+            client:load
+          />
+          <AnimatedCard
+            icon={FileEditIcon}
+            title="CMS Service"
+            description="Static page management — draft/publish workflow, multi-language with en-US fallback, hierarchical slugs, SEO metadata, and schema-per-tenant isolation."
+            delay={0.5}
             client:load
           />
         </div>
@@ -80,14 +90,17 @@ import {
               <p class="text-base-content/70 mb-4">
                 Deploy as <strong>multi-tenant B2B SaaS</strong> (schema-per-tenant PostgreSQL isolation)
                 or <strong>single-tenant B2C</strong> (all users in one default workspace) from the
-                same codebase, while keeping <strong>OAuth2/OIDC social login</strong> and
-                <strong> tenant-scoped enterprise SSO</strong> in the same platform. Switch deployment
-                mode via a single config flag, no code changes required.
+                same codebase. Every user gets a <strong>personal platform workspace</strong>
+                (auto-joined as MEMBER to <code>platform</code> tenant), plus
+                <strong> OAuth2/OIDC social login</strong>, tenant-scoped enterprise SSO, and
+                <strong> passwordless magic links</strong>. Switch deployment mode via one config flag.
               </p>
               <div class="flex flex-wrap gap-2">
                 <span class="badge badge-primary badge-lg">Multi-Tenant B2B</span>
                 <span class="badge badge-secondary badge-lg">Single-Tenant B2C</span>
                 <span class="badge badge-outline badge-lg">Schema-Per-Tenant</span>
+                <span class="badge badge-outline badge-lg">Personal Workspace</span>
+                <span class="badge badge-outline badge-lg">Magic Link Sign-in</span>
                 <span class="badge badge-outline badge-lg">RabbitMQ Provisioning</span>
               </div>
             </div>
@@ -108,57 +121,81 @@ import {
     <AnimatedSection client:load delay={0.15}>
       <section class="py-20">
         <h2 class="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
-          Administration & Self-Service
+          Authentication, Admin & Self-Service
         </h2>
         <p class="text-center text-base-content/60 mb-12 text-lg">
-          Complete platform management, tenant self-service, and centralized observability
+          Complete identity management, platform operations, tenant self-service, and global observability
         </p>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatedCard
+            icon={Key01Icon}
+            title="Passwordless Magic Link"
+            description="Secure email-based sign-in with configurable TTL, rate limiting, and automatic personal workspace membership on first use."
+            delay={0.1}
+            size={20}
+            client:load
+          />
+          <AnimatedCard
+            icon={Mail01Icon}
+            title="Multi-Language i18n"
+            description="Lingui 6 catalogs with en-US, bg-BG, de-DE, fr-FR out of the box — user locale stored on profile, i18n notifications and pages."
+            delay={0.15}
+            size={20}
+            client:load
+          />
+          <AnimatedCard
+            icon={DollarSquareIcon}
+            title="Plan Feature Enforcement"
+            description="Plan-code stamped into JWTs, feature-gate annotations, maxUsers + per-seat quotas, and advanced analytics gating on plans."
+            delay={0.2}
+            size={20}
+            client:load
+          />
+          <AnimatedCard
             icon={Activity03Icon}
             title="Centralized Audit Trail"
-            description="Passive event consumption from RabbitMQ, SPI-based extensibility, PLATFORM_ADMIN search API with JSONB metadata."
-            delay={0.1}
+            description="Passive RabbitMQ event consumption, SPI-based extensibility, PLATFORM_ADMIN search API with full JSONB metadata records."
+            delay={0.3}
             size={20}
             client:load
           />
           <AnimatedCard
             icon={MessageIcon}
             title="Global Announcements"
-            description="Multi-lingual announcements with async fan-out, real-time WebSocket push, and delivery tracking."
-            delay={0.2}
+            description="Multi-lingual editor with en-US mandatory + optional translations, async 1K batch fan-out, WebSocket broadcast, delivery tracking."
+            delay={0.4}
             size={20}
             client:load
           />
           <AnimatedCard
             icon={Shield01Icon}
             title="In-App Notifications"
-            description="Persistent notifications with unread badges, mark-as-read, dismiss, and real-time WebSocket delivery."
-            delay={0.3}
-            size={20}
-            client:load
-          />
-          <AnimatedCard
-            icon={RefreshIcon}
-            title="Token Exchange"
-            description="Seamless tenant switching without re-authentication — POST /auth/exchange for new tenant-scoped tokens."
-            delay={0.4}
-            size={20}
-            client:load
-          />
-          <AnimatedCard
-            icon={UserIcon}
-            title="Avatar Uploads"
-            description="Two-phase presigned S3/MinIO flow, auto-cleanup old avatars, tenant-isolated storage."
+            description="Persistent table + real-time WebSocket push, per-user STOMP queues, unread count, mark-as-read, i18n-aware types."
             delay={0.5}
             size={20}
             client:load
           />
           <AnimatedCard
-            icon={Database01Icon}
-            title="Refunds API"
-            description="Full refund management for tenants, PLATFORM_ADMIN global overview, and multi-gateway support for Stripe or Lemon Squeezy."
+            icon={RefreshIcon}
+            title="Token Exchange & Workspace Pick"
+            description="Seamless tenant switch via POST /auth/exchange — new RS256 pair per tenant; tenant picker UI with /users/me/memberships listing."
             delay={0.6}
+            size={20}
+            client:load
+          />
+          <AnimatedCard
+            icon={UserIcon}
+            title="Avatar & User Self-Service"
+            description="Two-phase presigned S3/MinIO upload, old avatar auto-delete, profile edits, password change, connected accounts and sign-out."
+            delay={0.7}
+            size={20}
+            client:load
+          />
+          <AnimatedCard
+            icon={Database01Icon}
+            title="Refunds & Trials"
+            description="Full refund management for TENANT_OWNER and PLATFORM_ADMIN; trial-ending and payment-overdue notifications via daily jobs."
+            delay={0.8}
             size={20}
             client:load
           />
@@ -170,10 +207,10 @@ import {
     <AnimatedSection client:load delay={0.2}>
       <section class="py-20">
         <h2 class="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-          Two Production React SPAs
+          Three Production Frontend Apps
         </h2>
         <p class="text-center text-base-content/60 mb-12 text-lg">
-          Ship with tenant-facing and platform-admin frontends — React 19, Mantine UI, and Feature-Sliced Design
+          Tenant workspace, platform operator console, and this Astro landing kit — all production-ready
         </p>
         <div class="grid md:grid-cols-2 gap-8">
           <div class="card bg-base-100 border border-base-300 shadow-lg hover:shadow-xl transition-shadow">
@@ -185,34 +222,36 @@ import {
                 <h3 class="text-2xl font-bold text-primary">Tenant App</h3>
               </div>
               <p class="text-base-content/70 mb-6">
-                The workspace interface for your customers. Scoped to a single tenant with dedicated session management.
+                The workspace interface for your customers. Tenant-scoped JWT sessions, 60+ UI routes, Feature-Sliced Design.
               </p>
               <ul class="space-y-3 mb-8">
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Sign-in with tenant discovery, social login, enterprise SSO, and self-service signup</span>
+                  <span>Password + passwordless magic link + OAuth2/Google/GitHub/Microsoft + tenant SSO sign-in</span>
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Team management & invitation workflows</span>
+                  <span>Self-service signup, create-org, invite accept, email verify, forgot/reset password</span>
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Billing self-service with Stripe or Lemon Squeezy portal flows</span>
+                  <span>Team list, invites, ban/unban, role edit, ownership transfer, memberships picker</span>
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>In-app notifications & announcements</span>
+                  <span>Billing self-service — checkout, plan catalog, Stripe/Lemon Squeezy portal, refunds</span>
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Lingui i18n support & Dark/Light themes</span>
+                  <span>Connected accounts, SSO OIDC config, notifications/announcements, i18n (EN/BG/DE/FR) + themes</span>
                 </li>
               </ul>
-              <div class="card-actions justify-start">
+              <div class="card-actions justify-start flex-wrap">
                 <span class="badge badge-outline">React 19</span>
                 <span class="badge badge-outline">Mantine UI 9</span>
                 <span class="badge badge-outline">TanStack Router</span>
+                <span class="badge badge-outline">TanStack Query</span>
+                <span class="badge badge-outline">Lingui</span>
               </div>
             </div>
           </div>
@@ -226,34 +265,36 @@ import {
                 <h3 class="text-2xl font-bold text-secondary">Platform Admin</h3>
               </div>
               <p class="text-base-content/70 mb-6">
-                Internal operator console for platform-wide administration. Manage the entire SaaS ecosystem.
+                Internal operator console for platform-wide administration. PLATFORM_ADMIN authority-gated.
               </p>
               <ul class="space-y-3 mb-8">
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
-                  <span>Dashboard with real-time metrics & count cards</span>
+                  <span>Dashboard with parallel count cards (users, orgs, active subscriptions)</span>
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
-                  <span>Global User & Organization management with platform authority controls</span>
+                  <span>User detail 4-tab view: Overview, Organizations, Identities, ban/unlock/force-unlink</span>
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
-                  <span>Subscription monitoring, lifecycle actions, and refunds overview</span>
+                  <span>Organization 5-tab view: Overview, Members, Billing, Subscriptions, Refunds</span>
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
-                  <span>Global audit logs & announcements management</span>
+                  <span>Announcements multi-lingual editor & publish, audit log search with filters, invites</span>
                 </li>
                 <li class="flex items-center gap-2 text-sm">
                   <div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
-                  <span>OIDC identity remediation, read-only plan catalog, and RBAC enforcement</span>
+                  <span>Subscription lifecycle (cancel/pause/reactivate), refunds detail, read-only plan catalog, i18n</span>
                 </li>
               </ul>
-              <div class="card-actions justify-start">
+              <div class="card-actions justify-start flex-wrap">
                 <span class="badge badge-outline">React 19</span>
                 <span class="badge badge-outline">mantine-datatable</span>
                 <span class="badge badge-outline">TanStack Query</span>
+                <span class="badge badge-outline">Zustand</span>
+                <span class="badge badge-outline">Zod</span>
               </div>
             </div>
           </div>
