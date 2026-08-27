@@ -24,7 +24,7 @@
     "@astrojs/tailwind": "^6.0.2",
     "@hugeicons/core-free-icons": "^4.3.0",
     "@hugeicons/react": "^1.1.9",
-    "astro": "^7.2.4",
+    "astro": "^7.2.6",
     "clsx": "^2.1.1",
     "framer-motion": "^13.1.1",
     "react": "^19.2.8",
