@@ -178,10 +178,12 @@ Operations NOT requiring approval: reading files, searching code, explaining con
 **Goal**: one sentence
 
 **Files**:
+
 - `src/components/Foo.tsx` — new island for X
 - `src/pages/bar.astro` — add Foo island
 
 **Key changes**:
+
 - brief bullet 1
 - brief bullet 2
 
@@ -200,6 +202,7 @@ Format: `type(scope): subject`
   - ❌ `fix(nav): add loading guard to TopNav render`
 
 Examples:
+
 - `feat(pricing): add monthly/annual toggle to plan selector`
 - `fix(auth): logout clears stale session after token expiry`
 - `chore(deps): update astro to v7.3.5`
