@@ -33,12 +33,12 @@ import {
     <AnimatedSection client:load>
       <section class="py-20">
         <h2 class="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-          Five Production-Ready Services
+          Six Production-Ready Services
         </h2>
         <p class="text-center text-base-content/60 mb-12 text-lg">
           100+ REST APIs, each with its own Helm chart, CI/CD pipeline, and dedicated PostgreSQL database
         </p>
-        <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatedCard
             icon={SecurityLockIcon}
             title="IAM Service"
@@ -72,6 +72,13 @@ import {
             title="CMS Service"
             description="Static page management — draft/publish workflow, multi-language with en-US fallback, hierarchical slugs, SEO metadata, and schema-per-tenant isolation."
             delay={0.5}
+            client:load
+          />
+          <AnimatedCard
+            icon={MessageIcon}
+            title="AI Chat Service"
+            description="Spring AI 2.0 + Ollama — LLM-backed conversational API, configurable system prompt and token budgets, session persistence per user, markdown responses, and PLATFORM_ADMIN session oversight."
+            delay={0.6}
             client:load
           />
         </div>
