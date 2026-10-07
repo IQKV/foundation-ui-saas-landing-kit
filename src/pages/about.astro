@@ -15,6 +15,7 @@ import {
   GithubIcon,
   Activity03Icon,
   FileEditIcon,
+  MessageIcon,
 } from "@hugeicons/core-free-icons";
 ---
 
@@ -24,9 +25,9 @@ import {
       <h1 class="text-4xl font-bold mb-4">About iQ Key Value</h1>
       <p class="text-lg max-w-2xl mx-auto text-base-content/70">
         Open source hybrid tenancy SaaS foundation with identity federation and plan enforcement.
-        Five production-ready microservices (IAM, Gateway, Billing, Audit, CMS) on Java 25 + Spring Boot 4 —
+        Six production-ready microservices (IAM, Gateway, Billing, Audit, CMS, AI Chat) on Java 25 + Spring Boot 4 —
         deploy as multi-tenant B2B or single-tenant B2C from the same codebase with OAuth2/OIDC, enterprise SSO,
-        magic-link passwordless sign-in, FLAT + PER_SEAT pricing, and plan-code feature gating built in.
+        magic-link passwordless sign-in, FLAT + PER_SEAT pricing, plan-code feature gating, and Spring AI 2.0 Ollama integration built in.
       </p>
     </div>
 
@@ -97,6 +98,17 @@ import {
               <p class="text-sm text-base-content/70">
                 Content management microservice — static page CRUD with draft/published lifecycle,
                 multi-language with en-US fallback, hierarchical slugs, SEO metadata, tenant-isolated schemas, RabbitMQ event publishing.
+              </p>
+            </div>
+          </div>
+          <div class="card bg-base-100 shadow-xl border border-base-200">
+            <div class="card-body">
+              <IconBox icon={MessageIcon} client:load />
+              <h3 class="card-title text-primary">AI Chat Service</h3>
+              <p class="text-sm text-base-content/70">
+                Spring AI 2.0 + Ollama — LLM-backed conversational API, session and message persistence,
+                configurable system prompt and token budgets, prompt engineering controls,
+                JWKS JWT validation, and PLATFORM_ADMIN session oversight.
               </p>
             </div>
           </div>

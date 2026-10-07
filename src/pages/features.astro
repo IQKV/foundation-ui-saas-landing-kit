@@ -15,6 +15,7 @@ import {
   Book01Icon,
   FileEditIcon,
   UserIcon,
+  MessageIcon,
 } from "@hugeicons/core-free-icons";
 ---
 
@@ -26,7 +27,7 @@ import {
           Platform Services
         </h1>
         <p class="text-xl max-w-2xl mx-auto text-base-content/70">
-          Five production-ready microservices + two React SPAs + Astro landing kit — 100+ REST APIs,
+          Six production-ready microservices + two React SPAs + Astro landing kit — 100+ REST APIs,
           each independently deployable with Helm charts, 10-stage CI/CD pipelines, and dedicated databases.
         </p>
       </div>
@@ -155,6 +156,30 @@ import {
         client:load
       />
 
+      <!-- AI Chat Service -->
+      <FeatureCard
+        icon={MessageIcon}
+        title="AI Chat Service"
+        description="Spring AI 2.0 + Ollama integration — LLM-backed conversational API with session persistence, prompt engineering controls, and admin oversight. Designed as an extensible AI template."
+        features={[
+          "Spring AI 2.0 with Ollama — local LLM inference, default model llama3.1:8b, swappable via config",
+          "Chat session + message persistence — PostgreSQL system schema (users are global, not tenant-scoped)",
+          "Cascade delete — removing a session automatically removes all its messages (FK ON DELETE CASCADE)",
+          "Configurable prompt engineering — system prompt, max input chars (4000), output tokens (1024), temperature (0.7)",
+          "Per-request OllamaChatOptions — model, temperature, and numPredict set on every call",
+          "Input guard — user message truncated to AI_MAX_INPUT_CHARS before being sent to the LLM",
+          "JWT RS256 resource server — JWKS validated against IAM; no local PEM key needed in deployed envs",
+          "Gateway integration — route with 180s response timeout; /api/v1/aichat/ping public endpoint",
+          "NonTransientAiException handler — LLM backend errors returned as 502 Bad Gateway ProblemDetail",
+          "PLATFORM_ADMIN session oversight — cross-user session listing without ownership restriction",
+          "Tenant context resolved per request — X-Tenant-ID header or JWT tenant_id claim",
+          "Full Helm chart — values.yaml includes ai.ollama, ai.prompt, billing.serviceUrl, jwt.jwksUri blocks",
+          "Drone CI/CD 10-stage pipeline — identical structure to CMS service, uses DRONE_REPO_NAME dynamically",
+        ]}
+        delay={0.5}
+        client:load
+      />
+
       <!-- Hybrid Tenancy -->
       <FeatureCard
         icon={Settings01Icon}
@@ -174,7 +199,7 @@ import {
           "Tenant lifecycle transitions — PROVISIONING→ACTIVE↔SUSPENDED→DELETED with PROVISIONING_FAILED retry",
           "Independent tenant status transitions — workspace stays accessible even when org tenant suspended",
         ]}
-        delay={0.5}
+        delay={0.55}
         client:load
       />
 
