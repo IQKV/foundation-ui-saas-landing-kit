@@ -267,6 +267,36 @@ pnpm formatter:write  # Format with OxFmt
 pnpm release          # Create release with release-it
 ```
 
+## Evaluation
+
+How we judge whether an agent task in this repository is actually done. Evaluation is evidence-based — a claim without the command and its observed result is not a pass.
+
+> This section starts minimal and grows with the repository. Add a gate only when a change type repeatedly slips through without it.
+
+### Definition of done
+
+A task is evaluated as done only when all of the following hold:
+
+- Every gate required by the change type below has run and passed.
+- The final report names the exact command(s) run and the observed result (pass/fail) — per Communication & output standards.
+- No required gate was skipped silently. A gate that could not run is reported as a gap, never as a pass.
+
+### Required gates by change type
+
+| Change type | Required gates |
+| --- | --- |
+| Any change | `pnpm build` (`astro check` + type check + build) |
+| Astro page, layout or content | `pnpm build`, then the affected page previewed with `pnpm dev` |
+| React island or interactive component | `pnpm build`, then the island exercised in `pnpm dev` |
+| Shared session contract (`iqkv_refresh_token` / `iqkv_tenant_key`, AuthIsland → Zustand → TopNav) | `pnpm build` plus a manual sign-in and sign-out flow check |
+| Styling (Tailwind / DaisyUI) | `pnpm formatter:check`, then `pnpm build` |
+| Dependency or build config | `pnpm formatter:check`, `pnpm lint`, `pnpm build` |
+| Docs or `AGENTS.md` only | No code gate — state that none applies |
+
+### Ordering
+
+Run the narrowest relevant gate first, then the full set for the change type. On the first failure, stop and report it — do not continue on an unproven base (see Execution Discipline).
+
 ## Verification After Changes
 
 Run before presenting a result:
