@@ -283,15 +283,15 @@ A task is evaluated as done only when all of the following hold:
 
 ### Required gates by change type
 
-| Change type | Required gates |
-| --- | --- |
-| Any change | `pnpm build` (`astro check` + type check + build) |
-| Astro page, layout or content | `pnpm build`, then the affected page previewed with `pnpm dev` |
-| React island or interactive component | `pnpm build`, then the island exercised in `pnpm dev` |
-| Shared session contract (`iqkv_refresh_token` / `iqkv_tenant_key`, AuthIsland → Zustand → TopNav) | `pnpm build` plus a manual sign-in and sign-out flow check |
-| Styling (Tailwind / DaisyUI) | `pnpm formatter:check`, then `pnpm build` |
-| Dependency or build config | `pnpm formatter:check`, `pnpm lint`, `pnpm build` |
-| Docs or `AGENTS.md` only | No code gate — state that none applies |
+| Change type                                                                                       | Required gates                                                 |
+| ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Any change                                                                                        | `pnpm build` (`astro check` + type check + build)              |
+| Astro page, layout or content                                                                     | `pnpm build`, then the affected page previewed with `pnpm dev` |
+| React island or interactive component                                                             | `pnpm build`, then the island exercised in `pnpm dev`          |
+| Shared session contract (`iqkv_refresh_token` / `iqkv_tenant_key`, AuthIsland → Zustand → TopNav) | `pnpm build` plus a manual sign-in and sign-out flow check     |
+| Styling (Tailwind / DaisyUI)                                                                      | `pnpm formatter:check`, then `pnpm build`                      |
+| Dependency or build config                                                                        | `pnpm formatter:check`, `pnpm lint`, `pnpm build`              |
+| Docs or `AGENTS.md` only                                                                          | No code gate — state that none applies                         |
 
 ### Ordering
 
