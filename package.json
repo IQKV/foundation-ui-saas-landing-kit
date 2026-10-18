@@ -18,6 +18,23 @@
     "preview": "astro preview",
     "release": "release-it --ci"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,astro}": [
+      "oxlint --type-aware",
+      "oxfmt --write"
+    ],
+    "*.{css,json,md}": [
+      "oxfmt --write"
+    ],
+    "package.json": [
+      "sort-package-json"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
     "@astrojs/react": "^7.1.0",
@@ -41,7 +58,7 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "cz-conventional-changelog": "^3.3.0",
-    "daisyui": "^5.7.50",
+    "daisyui": "^5.6.18",
     "eslint": "^10.13.0",
     "eslint-plugin-astro": "^3.2.1",
     "eslint-plugin-react-hooks": "^7.1.1",
@@ -60,25 +77,8 @@
     "tsdown": "^0.23.1",
     "typescript-eslint": "^8.71.2"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,astro}": [
-      "oxlint --type-aware",
-      "oxfmt --write"
-    ],
-    "*.{css,json,md}": [
-      "oxfmt --write"
-    ],
-    "package.json": [
-      "sort-package-json"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  },
+  "packageManager": "pnpm@10.33.2",
   "engines": {
     "node": ">=22.13.0"
-  },
-  "packageManager": "pnpm@10.33.2"
+  }
 }
